@@ -19,16 +19,16 @@ const Home = () => {
         <Filterpage/>
         <div>
             <div className="discover">
-                <h1 className='text-3xl font-serif font-bold'>Discover</h1>
+                <h1 className='text-3xl font-Lora font-bold'>Discover</h1>
                 {
                     discover ? (
-                        <div className=' relative h-80'>
-                            <div className=' w-full lg:w-80 lg:object-contain bg-slate-900 rounded-xl overflow-hidden shadow-xl'>
+                        <div className=' relative h-72 font-LosefinSans'>
+                            <div className=' w-full lg:w-80 lg:object-contain bg-slate-900 rounded-xl overflow-hidden shadow-xl h-72'>
                                  <img src={discover.strMealThumb} alt="" className='w-full opacity-50'/>
                             </div>
-                            <div className=' absolute top-16 w-80 h-64 flex flex-col  justify-evenly left-4'>
-                                <h1 className=' text-2xl font-bold font-serif text-white'>{discover.strMeal}</h1>
-                                <p  className=' text-2xl font-bold font-serif text-white p-2 bg-gray-400 rounded w-fit'>{discover.strCategory}</p>
+                            <div className=' absolute top-16 w-80 h-64 flex flex-col left-4'>
+                                <h1 className=' text-2xl font-bold  text-white'>{discover.strMeal}</h1>
+                                <p  className=' text-xl font-bold text-white p-2'>{discover.strCategory}</p>
                             </div>
                         </div>
                     ) : (
