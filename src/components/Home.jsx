@@ -81,7 +81,7 @@ const Home = () => {
                 (
                    <div className='grid grid-cols-1 place-items-center gap-5 md:grid-cols-4 lg:grid-cols-4 lg:place-items-center rounded-lg'>
                     {popular.map((item, index) => (
-                        <div className=' rounded-xl overflow-hidden shadow-2xl w-60 md:w-auto' key={index}>
+                        <div className=' rounded-xl overflow-hidden shadow-2xl w-80 md:w-auto' key={index}>
                             <img src={item.strMealThumb} alt="" className='w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
                             <h1 className='py-5 text-1xl px-2'>{item.strMeal}</h1>
                         </div>
