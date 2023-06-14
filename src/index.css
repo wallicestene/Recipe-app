@@ -4,12 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.body::-webkit-scrollbar{
+body::-webkit-scrollbar{
   display: none;
 }
-.app::-webkit-scrollbar{
-display: none;
-}
+
 /* .image-con{
   height: 60px;
   width: 80px;

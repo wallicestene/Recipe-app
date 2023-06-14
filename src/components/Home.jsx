@@ -61,12 +61,12 @@ const Home = () => {
                 <div className='' >
             {
             categories.length > 0 ? (
-                <div className='flex gap-5 lg:gap-5 md:gap-5 overflow-x-scroll items-center'>
+                <div className='categories flex gap-5 lg:gap-5 md:gap-5 overflow-x-scroll items-center '>
                 {categories.map((category, index) => (
-                    <div key={index}>
-                    <img src={category.strCategoryThumb} alt=""  className=' h-14 w-full bg-slate-600 rounded-lg object-cover relative opacity-90'/>
-                    <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
-                    </div>
+                    // <div key={index}>
+                    <img src={category.strCategoryThumb} alt=""  className=' h-24 w-full bg-slate-600 rounded-lg object-cover relative opacity-90'/>
+                    // <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
+                    // </div>
                 ))}
                 </div>
             ) : (
