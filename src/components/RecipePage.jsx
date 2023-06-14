@@ -44,10 +44,17 @@ const RecipePage = () => {
     <div className='recipe-page relative my-5 text-slate-800'>
         <div className='grid lg:grid-cols-2 md:grid-cols-2 gap-3 lg:gap-5 grid-cols-1'>
         <div className='left lg:w-full grid grid-cols-1 lg:gap-5 lg:flex flex-col gap-3'>
-            <img src={recipe.strMealThumb} alt="" className='w-full lg:h-72 lg:object-cover opacity-90 rounded-lg'/>
+            <div className='relative'>
+                <img src={recipe.strMealThumb} alt="" className='w-full lg:h-72 lg:object-cover opacity-90 rounded-lg'/>
             <div className='absolute top-3 left-4 bg-slate-800 text-white rounded-md p-1 hover:cursor-pointer' onClick={() => history.go(-1)}>
              <KeyboardBackspace fontSize='large'/>   
             </div>
+            <div className='absolute top-1/2 left-4  bg-gray-300 lg:p-2 p-1 rounded-sm shadow-md bg-opacity-70'>
+            <h1 className=' font-LosefinSans lg:text-xl '>{recipe.strMeal}</h1>  
+            </div>
+            </div>
+            
+            
             <div className='shadow-2xl'>
             <h2 className='text-3xl font-Lora font-bold mb-5 p-3'>Ingredients</h2>
             <ul className='flex overflow-scroll gap-5 p-5 scroll-smooth'>{renderIngredients()}</ul>

@@ -10,13 +10,18 @@ const Home = () => {
 
     useEffect(() => {
         // Discover
-        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-        .then(res => res.json())
-        .then(data =>{
-            setDiscover(data.meals[0])
-            console.log(data.meals[0])
-        })
-        .catch(err => console.log(err.message))
+         
+  fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+  .then(res => res.json())
+  .then(data => {
+    if (data.meals && data.meals.length > 0) {
+      setDiscover(data.meals[0]);
+      console.log(data.meals[0]);
+    } else {
+      console.log("No meals found");
+    }
+  })
+  .catch(err => console.log(err.message));
 // Categories
         fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
         .then(res => res.json())
@@ -44,6 +49,7 @@ const Home = () => {
                 {
                     discover ? (
                         <div className=' relative h-72 font-LosefinSans lg:w-full bg-black rounded-xl overflow-hidden shadow-xl'>
+                            <Link to={`/recipe/${discover.strMeal}`}>
                             <div className=' w-full lg:w-full lg:object-cover bg-slate-900  h-72'>
                                  <img src={discover.strMealThumb} alt="" className='w-full opacity-50 object-contain'/>
                             </div>
@@ -51,6 +57,7 @@ const Home = () => {
                                 <h1 className=' text-2xl font-bold  text-white'>{discover.strMeal}</h1>
                                 <p  className=' text-xl font-bold text-white p-2'>{discover.strCategory}</p>
                             </div>
+                            </Link>
                         </div>
                     ) : (
                         <p>Loading...</p>
@@ -65,7 +72,7 @@ const Home = () => {
                 <div className='categories flex gap-5 lg:gap-5 md:gap-5 overflow-x-scroll items-center '>
                 {categories.map((category, index) => (
                     // <div key={index}>
-                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-24  w-full bg-slate-600 rounded-lg object-cover relative opacity-90'/>
+                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-24  w-full bg-slate-800 rounded-lg object-cover relative'/>
                     // <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
                     // </div>
                 ))}
