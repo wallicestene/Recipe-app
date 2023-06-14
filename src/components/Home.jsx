@@ -5,6 +5,7 @@ import { AccessTime } from '@mui/icons-material'
 const Home = () => {
     const [discover,setDiscover] = useState([])
     const [categories, setCategories] = useState([])
+    const [popular, setPopular] = useState([])
 
     useEffect(() => {
         // Discover
@@ -21,6 +22,15 @@ const Home = () => {
         .then(data =>{
             setCategories(data.categories)
             console.log(data.categories)
+        })
+        .catch(err => console.log(err.message))
+
+    // Popular
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=b")
+        .then(res => res.json())
+        .then(data =>{
+            setPopular(data.meals)
+            console.log(data.meals)
         })
         .catch(err => console.log(err.message))
     }, [])
@@ -65,7 +75,22 @@ const Home = () => {
             </div>
 
          <div className="popular">
-        
+            <h1 className='text-3xl font-Lora font-bold mb-5'>Popular Recipes</h1>
+            {
+                popular.length > 0 ?
+                (
+                   <div className='grid grid-cols-1 gap-5 md:grid-cols-4 lg:grid-cols-4 lg:place-items-center rounded-lg'>
+                    {popular.map((item, index) => (
+                        <div className=' rounded-xl overflow-hidden shadow-2xl' key={index}>
+                            <img src={item.strMealThumb} alt="" className=' w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
+                            <h1 className='py-5 text-1xl px-2'>{item.strMeal}</h1>
+                        </div>
+                    ))}
+                   </div>
+                ) :(
+                    <h2>Loading...</h2>
+                )
+            }
                 </div>
             </div>
         </div>
