@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 const RecipePage = () => {
     const [recipe, setRecipe] = useState([])
+    const [loading, setLoading] = useState(true);
 
     const { name } = useParams()
 
@@ -15,12 +16,17 @@ const RecipePage = () => {
         .then(data =>{
             setRecipe(data.meals[0])
             console.log(data.meals[0])
+            setLoading(false);
         })
         .catch(err => console.log(err.message))
     }, [])
 // ingredients
 
     const renderIngredients = () => {
+        if (!recipe) {
+            return null;
+          }
+
         const ingredients = [];
         for (let i = 1; i <= 20; i++) {
           const ingredient = recipe[`strIngredient${i}`];
@@ -40,9 +46,15 @@ const RecipePage = () => {
         return ingredients;
       };
 
+      if (loading) {
+        return <h1>Loading...</h1>;
+      }
+
   return (
     <div className='recipe-page relative my-5 text-slate-800'>
         <div className='grid lg:grid-cols-2 md:grid-cols-2 gap-3 lg:gap-5 grid-cols-1'>
+            {/* left side */}
+            
         <div className='left lg:w-full grid grid-cols-1 lg:gap-5 lg:flex flex-col gap-3'>
             <div className='relative'>
                 <img src={recipe.strMealThumb} alt="" className='w-full lg:h-72 lg:object-cover opacity-90 rounded-lg'/>
@@ -57,7 +69,7 @@ const RecipePage = () => {
             
             <div className='shadow-2xl'>
             <h2 className='text-3xl font-Lora font-bold mb-5 p-3'>Ingredients</h2>
-            <ul className='flex overflow-scroll gap-5 p-5 scroll-smooth'>{renderIngredients()}</ul>
+            <ul className='ing flex overflow-scroll gap-5 p-5 scroll-smooth'>{renderIngredients()}</ul>
            </div>
         </div>
         <div className='rounded-lg border p-2 shadow-inner'>

@@ -16,7 +16,6 @@ const Home = () => {
   .then(data => {
     if (data.meals && data.meals.length > 0) {
       setDiscover(data.meals[0]);
-      console.log(data.meals[0]);
     } else {
       console.log("No meals found");
     }
@@ -27,7 +26,6 @@ const Home = () => {
         .then(res => res.json())
         .then(data =>{
             setCategories(data.categories)
-            console.log(data.categories)
         })
         .catch(err => console.log(err.message))
 
@@ -36,7 +34,6 @@ const Home = () => {
         .then(res => res.json())
         .then(data =>{
             setPopular(data.meals)
-            console.log(data.meals)
         })
         .catch(err => console.log(err.message))
     }, [])
@@ -69,14 +66,17 @@ const Home = () => {
                 <div className='' >
             {
             categories.length > 0 ? (
-                <div className='categories flex gap-5 lg:gap-5 md:gap-5 overflow-x-scroll items-center '>
+                <ul className='category flex h-40  gap-5 w-fill overflow-scroll items-center shadow-2xl '>
                 {categories.map((category, index) => (
-                    // <div key={index}>
-                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-24  w-full bg-slate-800 rounded-lg object-cover relative'/>
-                    // <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
-                    // </div>
+                    // 
+                    <li key={index} className='w-32 h-24 border rounded-lg bg-slate-800'>
+                    <Link to={`/category/${category.strCategory}`}>
+                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-full w-24 object-center object-cover'/>
+                    <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
+                    </Link>
+                    </li>
                 ))}
-                </div>
+                </ul>
             ) : (
                 <h1>Loading...</h1>
             )}
@@ -92,7 +92,7 @@ const Home = () => {
                         <div className=' rounded-xl overflow-hidden shadow-2xl w-80 md:w-auto' key={index}>
                            <Link to={`/recipe/${item.strMeal}`}>
                            <img src={item.strMealThumb} alt="" className='w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
-                            <h1 className='py-5 text-1xl px-2'>{item.strMeal}</h1>
+                            <h1 className='py-5 text-1xl px-2 font-LosefinSans'>{item.strMeal}</h1>
                            </Link> 
                         </div>
                     ))}

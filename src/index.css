@@ -7,6 +7,12 @@
 body::-webkit-scrollbar{
   display: none;
 }
+.ing::-webkit-scrollbar{
+  display: none;
+}
+.category::-webkit-scrollbar{
+  display: none;
+}
 
 /* .image-con{
   height: 60px;
