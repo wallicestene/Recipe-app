@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Filterpage from './Filterpage'
 import { AccessTime } from '@mui/icons-material'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 const Home = () => {
     const [discover,setDiscover] = useState([])
@@ -64,7 +65,7 @@ const Home = () => {
                 <div className='categories flex gap-5 lg:gap-5 md:gap-5 overflow-x-scroll items-center '>
                 {categories.map((category, index) => (
                     // <div key={index}>
-                    <img src={category.strCategoryThumb} alt=""  className=' h-24 w-full bg-slate-600 rounded-lg object-cover relative opacity-90'/>
+                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-24  w-full bg-slate-600 rounded-lg object-cover relative opacity-90'/>
                     // <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
                     // </div>
                 ))}
@@ -82,8 +83,10 @@ const Home = () => {
                    <div className='grid grid-cols-1 place-items-center gap-5 md:grid-cols-4 lg:grid-cols-4 lg:place-items-center rounded-lg'>
                     {popular.map((item, index) => (
                         <div className=' rounded-xl overflow-hidden shadow-2xl w-80 md:w-auto' key={index}>
-                            <img src={item.strMealThumb} alt="" className='w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
+                           <Link to={`/recipe/${item.strMeal}`}>
+                           <img src={item.strMealThumb} alt="" className='w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
                             <h1 className='py-5 text-1xl px-2'>{item.strMeal}</h1>
+                           </Link> 
                         </div>
                     ))}
                    </div>
