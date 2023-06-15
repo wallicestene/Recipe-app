@@ -15,7 +15,6 @@ const RecipePage = () => {
         .then(res => res.json())
         .then(data =>{
             setRecipe(data.meals[0])
-            console.log(data.meals[0])
             setLoading(false);
         })
         .catch(err => console.log(err.message))

@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Navbar from './components/Navbar'
 import RecipePage from './components/RecipePage'
 import Categories from './components/Categories'
+import Favrourite from './components/Favrourite'
 const App = () => {
   return (
     <div className='app lg:mx-auto lg:w-11/12 mx-2'>

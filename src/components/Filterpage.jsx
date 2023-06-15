@@ -1,8 +1,9 @@
 
 import { FavoriteBorder, Search, Tune } from '@mui/icons-material'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
-const Filterpage = ({searchMeal}) => {
+const Filterpage = ({searchMeal, showFavourites, setShowFavourites}) => {
   const [input, setInput] = useState("")
   const [searched, setSearched] = useState(false)
 
@@ -23,8 +24,8 @@ const Filterpage = ({searchMeal}) => {
                 <Tune className=' text-slate-600'/>
             </form>
         </div>
-        <div className="filter-right">
-            <FavoriteBorder/>
+        <div className="filter-right hover:cursor-pointer" onClick={() => setShowFavourites(!showFavourites)}>
+           <FavoriteBorder/>
         </div>
     </div>
   )
