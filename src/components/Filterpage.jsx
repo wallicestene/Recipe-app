@@ -25,7 +25,7 @@ const Filterpage = ({searchMeal, showFavourites, setShowFavourites}) => {
             </form>
         </div>
         <div className="filter-right hover:cursor-pointer" onClick={() => setShowFavourites(!showFavourites)}>
-          {showFavourites ?  <Close/> : <Favorite/> }
+          {showFavourites ?  <Close fontSize='large'/> : <Favorite fontSize='large'/> }
         </div>
     </div>
   )
