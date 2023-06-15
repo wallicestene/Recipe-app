@@ -7,10 +7,42 @@ const Home = () => {
     const [discover,setDiscover] = useState([])
     const [categories, setCategories] = useState([])
     const [popular, setPopular] = useState([])
+    const [searched, setSearched] = useState(false)
+    const [found, setFound] = useState(true)
+
+// search
+    const searchMeal = (meal) => {
+       
+              if(meal){
+                 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
+          .then((res) => res.json())
+          .then((data) => {
+            // if (data.meals && data.meals.length > 0) {
+              setDiscover(data.meals[0]);
+              console.log(data.meals[0]);
+              setSearched(true);
+              setFound(true)
+            })
+            .catch((err) => {
+            console.log(err.message)
+            setFound(false)
+          });
+              }else{
+                fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+                .then(res => res.json())
+                .then(data => {
+                  if (data.meals && data.meals.length > 0) {
+                    setDiscover(data.meals[0]);
+                  } else {
+                    console.log("No meals found");
+                  }
+                })
+                .catch(err => console.log(err.message));
+              }          
+      };
 
     useEffect(() => {
         // Discover
-         
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
   .then(res => res.json())
   .then(data => {
@@ -39,10 +71,11 @@ const Home = () => {
     }, [])
   return (
     <div className='home'>
-        <Filterpage/>
+        <Filterpage searchMeal={searchMeal}/>
         <div>
             <div className="discover mt-5 text-slate-800">
-                <h1 className='text-3xl font-Lora font-bold mb-5'>Discover</h1>
+                { found && <h1 className='text-3xl font-Lora font-bold mb-5'>{searched ? "Your Search" : "Discover"}</h1>}
+                {!found && <h1 className='text-3xl font-Lora font-bold mb-5'>Not Found</h1>}
                 {
                     discover ? (
                         <div className=' relative h-72 font-LosefinSans lg:w-full bg-black rounded-xl overflow-hidden shadow-xl'>
@@ -66,7 +99,7 @@ const Home = () => {
                 <div className='' >
             {
             categories.length > 0 ? (
-                <ul className='category flex h-40  gap-7 w-fill overflow-scroll items-center shadow-2xl mx-2'>
+                <ul className='category flex h-40  gap-7 w-fill overflow-scroll items-center'>
                 {categories.map((category, index) => (
                     <Link key={index} to={`/category/${category.strCategory}`}>
                     <li  className=' w-full lg:px-10 md:px-7 px-6 h-24 border rounded-lg bg-slate-800 opacity-90 flex flex-col items-end justify-end' style={{backgroundImage: `url(${category.strCategoryThumb})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat",}}>                   
