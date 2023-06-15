@@ -121,7 +121,7 @@ const Home = () => {
                                 <p  className=' text-xl font-bold text-white p-2'>{discover.strCategory}</p>
                             </div> 
                             </Link>
-                            <div className='absolute z-50 top-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer' onClick={() => handleClick(discover)}>
+                            <div className='absolute z-40 top-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer' onClick={() => handleClick(discover)}>
                             {favourite.find((favItem) => favItem.strMeal === discover.strMeal) ? (
                             <Favorite fontSize='large'/>
                             ) : (
