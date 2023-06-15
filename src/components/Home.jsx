@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Filterpage from './Filterpage'
-import { AccessTime, Delete,FavoriteBorderOutlined } from '@mui/icons-material'
+import { AccessTime, Delete,Favorite,FavoriteBorderOutlined } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
@@ -24,11 +24,14 @@ const Home = () => {
 
     console.log(favourite)
 
-    const addToFavourite = (item) => {
+    const handleClick = (item) => {
        const itemInFavourite = favourite.find(favItem => favItem.strMeal === item.strMeal)
 
        if(itemInFavourite){
-        alert('Already in your list')
+       dispatch({
+            type:'REMOVE_FAVOURITE',
+            favourite: item
+        })
         setIsInFavourite(true)
        }
        else{
@@ -161,8 +164,14 @@ const Home = () => {
                            </Link> 
                             <div className='flex items-center justify-between p-3'>
                                 <h1 className='text-1xl font-LosefinSans'>{item.strMeal}</h1>
-                           <div className='addtoFav text-black cursor-pointer' onClick={() => addToFavourite(item)}>
-                           <FavoriteBorderOutlined/> 
+                           <div className='addtoFav text-black cursor-pointer' onClick={() => handleClick(item)}>
+                            
+                        {favourite.find((favItem) => favItem.strMeal === item.strMeal) ? (
+                            <Favorite />
+                            ) : (
+                            <FavoriteBorderOutlined />
+                        )}
+
                             </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 
-import { FavoriteBorder, Search, Tune } from '@mui/icons-material'
+import { Close, Favorite, FavoriteBorder, Search, Tune } from '@mui/icons-material'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 
@@ -25,7 +25,7 @@ const Filterpage = ({searchMeal, showFavourites, setShowFavourites}) => {
             </form>
         </div>
         <div className="filter-right hover:cursor-pointer" onClick={() => setShowFavourites(!showFavourites)}>
-           <FavoriteBorder/>
+          {showFavourites ?  <Close/> : <Favorite/> }
         </div>
     </div>
   )
