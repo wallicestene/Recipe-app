@@ -119,8 +119,17 @@ const Home = () => {
                             <div className=' absolute top-16 w-80 h-64 flex flex-col left-4 z-40'>
                                 <h1 className=' text-2xl font-bold  text-white'>{discover.strMeal}</h1>
                                 <p  className=' text-xl font-bold text-white p-2'>{discover.strCategory}</p>
-                            </div>
+                            </div> 
                             </Link>
+                            <div className='absolute z-50 top-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer' onClick={() => handleClick(discover)}>
+                            {favourite.find((favItem) => favItem.strMeal === discover.strMeal) ? (
+                            <Favorite fontSize='large'/>
+                            ) : (
+                            <FavoriteBorderOutlined fontSize='large'/>
+                        )}
+
+                            </div>
+                           
                         </div>
                     ) : (
                         <p>Loading...</p>
@@ -165,7 +174,7 @@ const Home = () => {
                             <div className='flex items-center justify-between p-3'>
                                 <h1 className='text-1xl font-LosefinSans'>{item.strMeal}</h1>
                            <div className='addtoFav text-black cursor-pointer' onClick={() => handleClick(item)}>
-                            
+
                         {favourite.find((favItem) => favItem.strMeal === item.strMeal) ? (
                             <Favorite />
                             ) : (
