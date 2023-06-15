@@ -13,6 +13,9 @@ body::-webkit-scrollbar{
 .category::-webkit-scrollbar{
   display: none;
 }
+.fav::-webkit-scrollbar{
+  display: none;
+}
 
 /* .image-con{
   height: 60px;

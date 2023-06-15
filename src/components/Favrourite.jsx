@@ -14,9 +14,9 @@ const Favrourite = () => {
     }
 
   return (
-    <div className=' bg-gray-50 rounded-md p-2 shadow-lg border text-slate-800'>
-        <div className='px-5 py-1 border-b-2 mb-2'>
-            <h1 className=' font-Lora font-bold tracking-wide text-lg'>Favourites</h1>
+    <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96  h-64 overflow-auto relative'>
+        <div className='px-5 py-3 border-b-2 mb-2 sticky top-0 bg-white'>
+            <h1 className=' font-Lora font-bold tracking-wide text-lg '>Favourites</h1>
         </div>
         {
            favourite && favourite.length > 0 ? (
@@ -43,7 +43,10 @@ const Favrourite = () => {
            
         </div>
             ) : (
-                <p className=' text-gray-600 text-center p-10'>Nothing to see here</p>
+                <div className=' flex items-center justify-center'>
+                    <p className=' text-gray-600 px-28'>Nothing to see here</p>
+                </div>
+                
             )
         }
     </div>
