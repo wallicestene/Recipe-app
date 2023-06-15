@@ -33,6 +33,7 @@ const Home = () => {
                 .then(data => {
                   if (data.meals && data.meals.length > 0) {
                     setDiscover(data.meals[0]);
+                    setFound(true)
                   } else {
                     console.log("No meals found");
                   }
