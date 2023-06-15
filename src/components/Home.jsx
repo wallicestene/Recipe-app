@@ -41,7 +41,7 @@ const Home = () => {
     <div className='home'>
         <Filterpage/>
         <div>
-            <div className="discover mt-5">
+            <div className="discover mt-5 text-slate-800">
                 <h1 className='text-3xl font-Lora font-bold mb-5'>Discover</h1>
                 {
                     discover ? (
@@ -66,15 +66,17 @@ const Home = () => {
                 <div className='' >
             {
             categories.length > 0 ? (
-                <ul className='category flex h-40  gap-5 w-fill overflow-scroll items-center shadow-2xl '>
+                <ul className='category flex h-40  gap-7 w-fill overflow-scroll items-center shadow-2xl mx-2'>
                 {categories.map((category, index) => (
-                    // 
-                    <li key={index} className='w-32 h-24 border rounded-lg bg-slate-800'>
-                    <Link to={`/category/${category.strCategory}`}>
-                    <img src={category.strCategoryThumb} alt="" key={index}  className=' h-full w-24 object-center object-cover'/>
-                    <p className=' text-2xl lg:text-base md:text-base font-LosefinSans'>{category.strCategory}</p>
-                    </Link>
+                    <Link key={index} to={`/category/${category.strCategory}`}>
+                    <li  className=' w-full lg:px-10 md:px-7 px-6 h-24 border rounded-lg bg-slate-800 opacity-90 flex flex-col items-end justify-end' style={{backgroundImage: `url(${category.strCategoryThumb})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat",}}>                   
+                    {/* <img src={category.strCategoryThumb} alt="" key={index}  className=' h-full w-24 object-center object-cover'/> */}
+                    <div className='mb-2 bg-slate-800 lg:p-2 p-1 rounded-sm shadow-md bg-opacity-70'>
+                         <p className=' lg:text-xl text-base md:text-base font-LosefinSans text-white '>{category.strCategory}</p>
+                    </div>
+                   
                     </li>
+                    </Link>
                 ))}
                 </ul>
             ) : (
