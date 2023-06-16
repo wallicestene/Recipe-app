@@ -17,15 +17,16 @@ const Filterpage = ({searchMeal, showFavourites, setShowFavourites}) => {
     <div className='filterpage flex items-center justify-between mt-5'>
         <div className="filter-left">
             <form className='flex gap-3 items-center' onSubmit={handleSubmit}>
-                <div className=' bg-gray-200 flex items-center rounded shadow-xl w-60 lg:w-72'>
+                <div className='  flex items-center rounded-full shadow-xl w-64 border lg:w-96 p-1'>
                 <Search/>
-                <input type="text" value={input} className='py-2  outline-none bg-transparent w-full' onChange={(e) => setInput(e.target.value)}/>
+                <input type="text" value={input} placeholder='Search by name' className='lg:py-2 py-2 outline-none bg-transparent w-full indent-3' onChange={(e) => setInput(e.target.value)}/>
                 </div>
-                <Tune className=' text-slate-600'/>
+                {/* <Tune className=' text-slate-600'/> */}
             </form>
         </div>
-        <div className="filter-right hover:cursor-pointer" onClick={() => setShowFavourites(!showFavourites)}>
-          {showFavourites ?  <Close fontSize='large'/> : <Favorite fontSize='large'/> }
+        <div className="filter-right hover:cursor-pointer flex items-center gap-1 text-rose-500" onClick={() => setShowFavourites(!showFavourites)}>
+          <h1 className=' text-sm text-gray-800'>Favourites</h1>
+          {showFavourites ? <div className='text-black'> <Close fontSize='large' /></div> : <Favorite fontSize='large'/> }
         </div>
     </div>
   )

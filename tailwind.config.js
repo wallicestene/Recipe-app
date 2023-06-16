@@ -9,6 +9,9 @@ export default {
       fontFamily:{
         Lora: "Lora",
         LosefinSans: "Josefin Sans"
+      },
+      colors: {
+        red: "#ff0000"
       }
     },
   },

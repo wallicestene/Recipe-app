@@ -14,7 +14,7 @@ const Favrourite = () => {
     }
 
   return (
-    <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96  h-64 overflow-auto relative scroll-smooth'>
+    <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96 h-72 overflow-auto relative scroll-smooth'>
         <div className='px-5 py-3 border-b-2 mb-2 sticky top-0 bg-white'>
             <h1 className=' font-Lora font-bold tracking-wide text-lg '>Favourites</h1>
         </div>
