@@ -22,9 +22,9 @@ const App = () => {
             type: "LOG_IN",
             user: {
                 uid : user?.uid,
-                name:  user?.displayName,
-                photo: user?.photoURL,
                 email: user?.email,
+                photoURL: user?.photoURL,
+                displayName: user?.displayName,
             }
         })
         }else{
@@ -40,7 +40,7 @@ const App = () => {
     <div className='app lg:mx-auto lg:w-11/12 mx-2'>
       {
         !user ? (
-          <div className=' grid place-items-center mt-10'>
+          <div className=' grid place-items-center  h-screen'>
         <LoginPage/>
       </div>
         ) : (
