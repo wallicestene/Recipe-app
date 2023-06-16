@@ -37,7 +37,7 @@ const RecipePage = () => {
                 <div className='h-10 w-20 relative top-0'>
                      <p className='text-xs text-white p-2 inline-block'>{measure} {ingredient}</p>
                 </div>
-                <img src={ingredientImageSrc} alt="" className='h-24 w-full object-contain opacity-75'/>
+                <img src={ingredientImageSrc} alt="" className='h-24 w-full object-contain'/>
               </li>
             );
           }
