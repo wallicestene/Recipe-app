@@ -4,6 +4,7 @@ import { AccessTime, Delete,Favorite,FavoriteBorderOutlined } from '@mui/icons-m
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
+import { Skeleton } from '@mui/material'
 
 const Home = () => {
     const [discover,setDiscover] = useState([])
@@ -95,7 +96,7 @@ const Home = () => {
         .catch(err => console.log(err.message))
 
     // Popular
-    fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=b")
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=c")
         .then(res => res.json())
         .then(data =>{
             setPopular(data.meals)
@@ -187,7 +188,11 @@ const Home = () => {
                     ))}
                    </div>
                 ) :(
-                    <h2>Loading...</h2>
+                   <div>
+                    {popular.map((item, index) => (
+                        <Skeleton variant="rectangular" width={210} height={118} />
+                    ))}
+                   </div>
                 )
             }
                 </div>

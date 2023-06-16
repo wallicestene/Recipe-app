@@ -6,11 +6,7 @@ const reducer = (state, action) => {
     console.log(action)
 
     switch(action.type){
-        case 'SET_USER':
-            return {
-                ...state,
-                user : action.user 
-            };
+
         case 'ADD_FAVOURITE':
             return{
                 ...state,
@@ -21,6 +17,18 @@ const reducer = (state, action) => {
                     ...state,
                     favourite: state.favourite.filter((item) => item !== action.favourite),
                 };
+                
+            case 'LOG_IN':
+                return{
+                    ...state,
+                    user: action.user
+                };
+
+            case 'LOG_OUT':
+                return{
+                    ...state,
+                    user :null
+                }
         default: 
             throw Error("No case for that type found")
     }
