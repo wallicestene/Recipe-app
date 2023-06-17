@@ -68,7 +68,7 @@ const RecipePage = () => {
             
             <div className='shadow-2xl'>
             <h2 className='text-3xl font-Lora font-bold mb-5 p-3'>Ingredients</h2>
-            <ul className='ing flex overflow-scroll gap-5 p-5 scroll-smooth bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg'>{renderIngredients()}</ul>
+            <ul className='ing flex overflow-x-scroll gap-5 p-5 scroll-smooth bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg'>{renderIngredients()}</ul>
            </div>
         </div>
         <div className='rounded-lg border p-2 shadow-inner'>

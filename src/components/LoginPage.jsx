@@ -22,11 +22,6 @@ const signIn = (e) => {
         return alert("please enter a first name")
       };
 
-      if(!image){
-        return alert("please enter a Profile photo url")
-      }
-    
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
     
