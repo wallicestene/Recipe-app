@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { HashRouter as Router, Route , Switch } from 'react-router-dom/cjs/react-router-dom.min'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
 import RecipePage from './components/RecipePage'
@@ -11,52 +11,54 @@ import { auth } from './Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
 const App = () => {
-  const [login ,setLogIn] = useState(false)
+  const [{ user }, dispatch] = useFavourite()
+  const [loading, setLoading] = useState(true)
 
-  const [{user}, dispatch] = useFavourite()
-
-    useEffect(() => {
-      const unSubscribe = onAuthStateChanged(auth, (user) => {
-        if(user){
-          dispatch({
-            type: "LOG_IN",
-            user: {
-                uid : user?.uid,
-                email: user?.email,
-                photoURL: user?.photoURL,
-                displayName: user?.displayName,
-            }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
+      if (userAuth) {
+        dispatch({
+          type: 'LOG_IN',
+          user: {
+            uid: userAuth.uid,
+            email: userAuth.email,
+            photoURL: userAuth.photoURL,
+            displayName: userAuth.displayName
+          }
         })
-        }else{
-          dispatch({
-            type: "LOG_OUT",
-            user: null
-          })
-        }
-      })
-      return unSubscribe
-    },[dispatch])
+      } else {
+        dispatch({
+          type: 'LOG_OUT',
+          user: null
+        })
+      }
+      setLoading(false)
+    })
+
+    return unsubscribe
+  }, [dispatch])
+
+  if (loading) {
+    // Render loading state if the authentication state is still loading
+    return <div>Loading...</div>
+  }
+
   return (
     <div className='app lg:mx-auto lg:w-11/12 mx-2'>
-      {
-        !user ? (
-          <div className=' grid place-items-center  h-screen'>
-        <LoginPage/>
-      </div>
-        ) : (
-       <Router>
-        <Navbar/>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path="/recipe/:name" component={RecipePage}/>
-          <Route path="/category/:category" component={Categories}/>
-        </Switch>
-      </Router> 
-        )
-      }
-      
-      
-      
+      {!user ? (
+        <div className='grid place-items-center h-screen'>
+          <LoginPage />
+        </div>
+      ) : (
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/recipe/:name' component={RecipePage} />
+            <Route path='/category/:category' component={Categories} />
+          </Switch>
+        </Router>
+      )}
     </div>
   )
 }

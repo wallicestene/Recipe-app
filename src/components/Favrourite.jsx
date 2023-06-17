@@ -44,7 +44,7 @@ const Favrourite = () => {
         </div>
             ) : (
                 <div className=' flex items-center justify-center'>
-                    <p className=' text-gray-600 px-28'>Nothing to see here</p>
+                    <p className=' text-gray-600 lg:px-28'>Click the ❤️ to add to Favourites</p>
                 </div>
                 
             )
