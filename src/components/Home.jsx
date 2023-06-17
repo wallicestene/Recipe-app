@@ -142,7 +142,7 @@ const Home = () => {
                 <div className='' >
             {
             categories.length > 0 ? (
-                <ul className='category flex h-40  gap-7 w-fill overflow-x-scroll items-center bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg'>
+                <ul className='category flex h-40  gap-3 w-fill overflow-x-scroll items-center bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg'>
                 {categories.map((category, index) => (
                     <Link key={index} to={`/category/${category.strCategory}`}>
                     <li  className=' w-full lg:px-10 md:px-7 px-6 h-24 border rounded-lg opacity-90 flex flex-col items-end justify-end shadow-2xl transition ease-in-out delay-75  hover:-translate-x-1 hover:scale-110 duration-200' style={{backgroundImage: `url(${category.strCategoryThumb})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat",}}>                   
