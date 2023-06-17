@@ -81,11 +81,11 @@ const signIn = (e) => {
   return (
     <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center'>
         <div className=' text-center'>
-            <h1>Find Recipe</h1>
+            <h1 className=' lg:text-3xl text-2xl font-LosefinSans font-bold'>Recipe Realm</h1>
         </div>
         <div className=' flex flex-col gap-20 w-full'>
             <div className='text-center flex flex-col items-center gap-5 p-2'>
-                <h2>Welcome to Find Recipe</h2>
+                <h2>Welcome to Recipe Realm</h2>
             </div>
             <form className='w-full flex flex-col items-center gap-5'>
 
