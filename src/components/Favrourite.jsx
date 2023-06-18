@@ -64,7 +64,7 @@ const favouritesCollection = collection(db, "favourites")
         </div>
             ) : (
                 <div className=' flex items-center justify-center'>
-                    <p className=' text-gray-600 lg:px-28'>Click the ❤️ to add to Favourites</p>
+                    <p className=' text-gray-600  text-center'>Click the ❤️ to add to Favourites</p>
                 </div>
                 
             )
