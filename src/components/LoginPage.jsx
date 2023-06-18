@@ -74,15 +74,15 @@ const signIn = (e) => {
   
 
   return (
-    <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center'>
+    <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center bg-[url(https:\/\/www.themealdb.com\/images\/media\/meals\/urzj1d1587670726.jpg)] bg-center bg-cover text-white p-2'>
         <div className=' text-center'>
             <h1 className=' lg:text-3xl text-2xl font-LosefinSans font-bold'>Recipe Realm</h1>
         </div>
         <div className=' flex flex-col gap-20 w-full'>
-            <div className='text-center flex flex-col items-center gap-5 p-2'>
+            <div className='text-center flex flex-col items-center gap-5 p-2 bg-black bg-opacity-60 rounded-md'>
                 <h2>Welcome to Recipe Realm</h2>
             </div>
-            <form className='w-full flex flex-col items-center gap-5'>
+            <form className='w-full flex flex-col items-center gap-5 bg-white py-2 rounded-md shadow-xl text-black bg-opacity-50 '>
 
             <div className=' w-72 border-b-2 border-gray-400'>
                     <p>User's Profile</p>

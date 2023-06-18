@@ -4,6 +4,7 @@ import { useFavourite } from './DataLayer'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../Firebase'
 import logo from "./logo/logo.png"
+import { Avatar } from '@mui/material'
 
 // Function to check if a string is a URL
 function isURL(str) {
@@ -48,7 +49,7 @@ const Navbar = () => {
             <h1 className=' text-sm text-gray-500 font-LosefinSans first-letter:uppercase'>{user.displayName ? user.displayName : "Profile"}</h1>
            <div onClick={() => setShowLogOut(!showLogOut) } className='h-10 w-10 bg-gradient-to-r from-gray-300 to-slate-900  rounded-full overflow-hidden grid place-items-center text-white cursor-pointer'>
             {!user?.photoURL ? (<div  className=' w-full h-full flex items-center justify-center font-LosefinSans text-3xl p-1 '>{user?.email[0].toUpperCase()}</div>) : isURL(user?.photoURL) ? (<img src={user?.photoURL} alt="" className='w-full h-full '/>): (<div className=' w-full h-full flex items-center justify-center font-LosefinSans text-3xl p-1 '>{user?.email[0].toUpperCase()}</div> )}
-           </div>
+          </div>
         </div>
       <div className={` ${!showLogOut ? " hidden" : ""} absolute shadow-lg z-50 top-0 bg-gradient-to-r from-gray-700 to-slate-500 rounded-md  -left-8 lg:-left-9 border-2 text-white p-1 cursor-pointer`} onClick={() => signOut(auth)}>
       <h1>Log Out</h1>

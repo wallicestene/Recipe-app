@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../Firebase'
 
-const Favrourite = ({favourite}) => {
-    const [{user}, dispatch] = useFavourite()
+
+const Favrourite = ({favourite, setFavourite}) => {
 
 const favouritesCollection = collection(db, "favourites")
 
@@ -18,6 +18,7 @@ const favouritesCollection = collection(db, "favourites")
             deleteDoc(doc.ref)
             .then(() => {
                 console.log('Favorite removed successfully');
+                
                 setFavourite((prevFavorites) =>
                 prevFavorites.filter((favItem) => favItem.idMeal !== item.idMeal)
                 );
@@ -31,24 +32,6 @@ const favouritesCollection = collection(db, "favourites")
         console.log('Error querying favorites: ', error);
         });
     };
-
-  
-    // useEffect(() => {
-    //     if (user) {
-    //       const q = query(favouritesCollection, where('userId', '==', user.uid), orderBy("createdAt", "desc"));
-    //       const unsubscribe = onSnapshot(q, (snapshot) => {
-    //         const favorites = snapshot.docs.map((doc) => doc.data());
-    //         setFavourite(favorites);
-    //       }, (error) => {
-    //         console.log('Error fetching favorites: ', error);
-    //       });
-      
-    //       return () => {
-    //         unsubscribe();
-    //       };
-    //     }
-    //   }, [user]);
-      
 
   return (
     <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96 h-72 overflow-y-scroll relative scroll-smooth'>

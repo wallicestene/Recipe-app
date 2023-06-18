@@ -13,8 +13,6 @@ const Home = () => {
 
     const [categories, setCategories] = useState([])
 
-    const [showDelete, setShowDelete] = useState(false)
-
     const [popular, setPopular] = useState([])
 
     const [favourite, setFavourite] = useState([]);
@@ -29,42 +27,23 @@ const Home = () => {
 
     const [{user}, dispatch] = useFavourite()
    
-    // console.log(user)
-
-    // const handleClick = (item) => {
-    //    const itemInFavourite = favourite.find(favItem => favItem.strMeal === item.strMeal)
-
-    //    if(itemInFavourite){
-    //    dispatch({
-    //         type:'REMOVE_FAVOURITE',
-    //         favourite: item
-    //     })
-    //     setIsInFavourite(true)
-    //    }
-    //    else{
-    //     dispatch({
-    //         type: "ADD_FAVOURITE",
-    //         favourite: item,
-    //     })
-    //     setIsInFavourite(false)
-    //    }
-    // }
-console.log(favourite)
+    
     const favouritesCollection = collection(db, "favourites")
 
     const handleClick = (item) => {
         const intheFavourite = favourite.find((favItem) => favItem.strMeal === item.strMeal)
+
         if(!intheFavourite){
-            addDoc(favouritesCollection, {...item, userId: user.uid, createdAt: serverTimestamp()})
-    .then(() => {
-        console.log('Favorite added successfully');
-      })
-      .catch((error) => {
-        console.log('Error adding favorite: ', error);
-      });
+        addDoc(favouritesCollection, {...item, userId: user.uid, createdAt: serverTimestamp()})
+        .then(() => {
+            console.log('Favorite added successfully');
+        })
+        .catch((error) => {
+            console.log('Error adding favorite: ', error);
+        });
         }else{
             const q = query(favouritesCollection, where('idMeal', '==', item.idMeal));
-        getDocs(q)
+            getDocs(q)
             .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 deleteDoc(doc.ref)
@@ -77,7 +56,6 @@ console.log(favourite)
                 .catch((error) => {
                     console.log('Error removing favorite: ', error);
                 });
-                setShowDelete(true)
             });
             })
             .catch((error) => {
@@ -260,7 +238,7 @@ console.log(favourite)
         {
             showFavourites && 
             <div className='absolute top-14 z-40 w-full lg:w-96 lg:right-0'>
-            <Favrourite favourite={favourite}/>
+            <Favrourite favourite={favourite} setFavourite={setFavourite}/>
             </div>
         }
         </div>
