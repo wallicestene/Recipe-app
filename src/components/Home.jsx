@@ -5,13 +5,19 @@ import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
 import { Skeleton } from '@mui/material'
+import { addDoc, collection, deleteDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore'
+import { db } from '../Firebase'
 
 const Home = () => {
     const [discover,setDiscover] = useState([])
 
     const [categories, setCategories] = useState([])
 
+    const [showDelete, setShowDelete] = useState(false)
+
     const [popular, setPopular] = useState([])
+
+    const [favourite, setFavourite] = useState([]);
 
     const [searched, setSearched] = useState(false)
 
@@ -21,29 +27,80 @@ const Home = () => {
 
     const [showFavourites, setShowFavourites] = useState(false)
 
-    const [{favourite}, dispatch] = useFavourite()
+    const [{user}, dispatch] = useFavourite()
+   
+    // console.log(user)
 
-    console.log(favourite)
+    // const handleClick = (item) => {
+    //    const itemInFavourite = favourite.find(favItem => favItem.strMeal === item.strMeal)
+
+    //    if(itemInFavourite){
+    //    dispatch({
+    //         type:'REMOVE_FAVOURITE',
+    //         favourite: item
+    //     })
+    //     setIsInFavourite(true)
+    //    }
+    //    else{
+    //     dispatch({
+    //         type: "ADD_FAVOURITE",
+    //         favourite: item,
+    //     })
+    //     setIsInFavourite(false)
+    //    }
+    // }
+console.log(favourite)
+    const favouritesCollection = collection(db, "favourites")
 
     const handleClick = (item) => {
-       const itemInFavourite = favourite.find(favItem => favItem.strMeal === item.strMeal)
+        const intheFavourite = favourite.find((favItem) => favItem.strMeal === item.strMeal)
+        if(!intheFavourite){
+            addDoc(favouritesCollection, {...item, userId: user.uid, createdAt: serverTimestamp()})
+    .then(() => {
+        console.log('Favorite added successfully');
+      })
+      .catch((error) => {
+        console.log('Error adding favorite: ', error);
+      });
+        }else{
+            const q = query(favouritesCollection, where('idMeal', '==', item.idMeal));
+        getDocs(q)
+            .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                deleteDoc(doc.ref)
+                .then(() => {
+                    console.log('Favorite removed successfully');
+                    setFavourite((prevFavorites) =>
+                    prevFavorites.filter((favItem) => favItem.idMeal !== item.idMeal)
+                    );
+                })
+                .catch((error) => {
+                    console.log('Error removing favorite: ', error);
+                });
+                setShowDelete(true)
+            });
+            })
+            .catch((error) => {
+            console.log('Error querying favorites: ', error);
+            });
+            }
+        }
 
-       if(itemInFavourite){
-       dispatch({
-            type:'REMOVE_FAVOURITE',
-            favourite: item
-        })
-        setIsInFavourite(true)
-       }
-       else{
-        dispatch({
-            type: "ADD_FAVOURITE",
-            favourite: item,
-        })
-        setIsInFavourite(false)
-       }
-    }
-
+    useEffect(() => {
+        if (user) {
+          const q = query(favouritesCollection, where('userId', '==', user.uid), orderBy("createdAt", "desc"));
+          const unsubscribe = onSnapshot(q, (snapshot) => {
+            const favorites = snapshot.docs.map((doc) => doc.data());
+            setFavourite(favorites);
+          }, (error) => {
+            console.log('Error fetching favorites: ', error);
+          });
+      
+          return () => {
+            unsubscribe();
+          };
+        }
+      }, [user]);
 // search
     const searchMeal = (meal) => {
        
@@ -124,10 +181,11 @@ const Home = () => {
                             </Link>
                             <div className='absolute z-40 top-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer' onClick={() => handleClick(discover)}>
                             {favourite.find((favItem) => favItem.strMeal === discover.strMeal) ? (
-                            <Favorite fontSize='large'/>
+                            <Favorite fontSize='large'/> 
                             ) : (
-                            <FavoriteBorderOutlined fontSize='large'/>
-                        )}
+                           <FavoriteBorderOutlined fontSize='large'/>
+                            )} 
+
 
                             </div>
                            
@@ -176,11 +234,12 @@ const Home = () => {
                                 <h1 className='text-1xl font-LosefinSans text-s-black'>{item.strMeal}</h1>
                            <div className='addtoFav cursor-pointer text-red ' onClick={() => handleClick(item)}>
 
-                        {favourite.find((favItem) => favItem.strMeal === item.strMeal) ? (
+                        {favourite.find((favItem) => favItem.strMeal === item.strMeal) ? ( 
                             <Favorite/>
-                            ) : (
+                           ) : (
                             <FavoriteBorderOutlined />
-                        )}
+                        )} 
+                        
 
                             </div>
                             </div>
@@ -201,7 +260,7 @@ const Home = () => {
         {
             showFavourites && 
             <div className='absolute top-14 z-40 w-full lg:w-96 lg:right-0'>
-            <Favrourite/>
+            <Favrourite favourite={favourite}/>
             </div>
         }
         </div>

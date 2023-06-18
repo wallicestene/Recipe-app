@@ -1,17 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFavourite } from './DataLayer'
 import { Delete } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
+import { collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, where } from 'firebase/firestore'
+import { db } from '../Firebase'
 
-const Favrourite = () => {
-    const [{favourite}, dispatch] = useFavourite()
-    
-    const removeFromFavourites = (item) =>{
-        dispatch({
-            type:'REMOVE_FAVOURITE',
-            favourite: item
+const Favrourite = ({favourite}) => {
+    const [{user}, dispatch] = useFavourite()
+
+const favouritesCollection = collection(db, "favourites")
+
+    const removeFromFavorites = (item) => {
+    const q = query(favouritesCollection, where('idMeal', '==', item.idMeal));
+    getDocs(q)
+        .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            deleteDoc(doc.ref)
+            .then(() => {
+                console.log('Favorite removed successfully');
+                setFavourite((prevFavorites) =>
+                prevFavorites.filter((favItem) => favItem.idMeal !== item.idMeal)
+                );
+            })
+            .catch((error) => {
+                console.log('Error removing favorite: ', error);
+            });
+        });
         })
-    }
+        .catch((error) => {
+        console.log('Error querying favorites: ', error);
+        });
+    };
+
+  
+    // useEffect(() => {
+    //     if (user) {
+    //       const q = query(favouritesCollection, where('userId', '==', user.uid), orderBy("createdAt", "desc"));
+    //       const unsubscribe = onSnapshot(q, (snapshot) => {
+    //         const favorites = snapshot.docs.map((doc) => doc.data());
+    //         setFavourite(favorites);
+    //       }, (error) => {
+    //         console.log('Error fetching favorites: ', error);
+    //       });
+      
+    //       return () => {
+    //         unsubscribe();
+    //       };
+    //     }
+    //   }, [user]);
+      
 
   return (
     <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96 h-72 overflow-y-scroll relative scroll-smooth'>
@@ -34,7 +71,7 @@ const Favrourite = () => {
                         </div>
                     </div>
                     </Link>
-                    <div className=' cursor-pointer' onClick={() => removeFromFavourites(item)}>
+                    <div className=' cursor-pointer' onClick={() => removeFromFavorites(item)}>
                         <Delete/>
                     </div>
                 </div>

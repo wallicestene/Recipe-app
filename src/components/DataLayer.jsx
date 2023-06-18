@@ -5,7 +5,7 @@ export const favouriteContext = createContext()
 
 export const DataLayer = ({children}) => (
     <favouriteContext.Provider value={useReducer(reducer, initialState)}>
-        { children}
+        { children }
     </favouriteContext.Provider>
 )
  export const useFavourite = () => {
