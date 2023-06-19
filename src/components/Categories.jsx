@@ -7,6 +7,7 @@ import { db } from '../Firebase'
 import { addDoc, collection, deleteDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore'
 const Categories = () => {
     const [recipe, setRecipe] = useState([])
+
     const [favourite, setFavourite] = useState([]);
 
     
@@ -85,7 +86,7 @@ const handleClick = (item) => {
         </div>
         <div className='grid grid-cols-1 place-items-center gap-5 md:grid-cols-4 lg:grid-cols-4 lg:place-items-center rounded-lg'>
        { recipe.map((item, index) => (
-        <div className='rounded-xl bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 overflow-hidden shadow-2xl w-80 md:w-auto transition ease-in-out delay-75  hover:-translate-x-1 hover:scale-105 duration-500' key={index}>
+        <div className='rounded-xl bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 overflow-hidden shadow-2xl w-80 md:w-auto transition ease-in-out delay-100  hover:-translate-x-1 hover:scale-105 duration-400' key={index}>
             <Link to={`/recipe/${item.strMeal}`} >
             <img src={item.strMealThumb} alt="" className='w-full md:w-50 lg:w-50 lg:object-contain object-contain'/>
              </Link>
