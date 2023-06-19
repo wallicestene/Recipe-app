@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Filterpage from './Filterpage'
-import { AccessTime, Delete,Favorite,FavoriteBorderOutlined } from '@mui/icons-material'
+import { Favorite,FavoriteBorderOutlined } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
@@ -21,8 +21,6 @@ const Home = () => {
 
     const [found, setFound] = useState(true)
 
-    const [isInFavourite, setIsInFavourite] = useState(false)
-
     const [showFavourites, setShowFavourites] = useState(false)
 
     const [{user}, dispatch] = useFavourite()
@@ -31,38 +29,39 @@ const Home = () => {
     const favouritesCollection = collection(db, "favourites")
 
     const handleClick = (item) => {
-        const intheFavourite = favourite.find((favItem) => favItem.strMeal === item.strMeal)
-
-        if(!intheFavourite){
-        addDoc(favouritesCollection, {...item, userId: user.uid, createdAt: serverTimestamp()})
-        .then(() => {
-            console.log('Favorite added successfully');
-        })
-        .catch((error) => {
-            console.log('Error adding favorite: ', error);
-        });
-        }else{
-            const q = query(favouritesCollection, where('idMeal', '==', item.idMeal));
-            getDocs(q)
-            .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                deleteDoc(doc.ref)
-                .then(() => {
-                    console.log('Favorite removed successfully');
-                    setFavourite((prevFavorites) =>
-                    prevFavorites.filter((favItem) => favItem.idMeal !== item.idMeal)
-                    );
-                })
-                .catch((error) => {
-                    console.log('Error removing favorite: ', error);
-                });
-            });
+        const intheFavourite = favourite.find((favItem) => favItem.strMeal === item.strMeal);
+      
+        if (!intheFavourite) {
+          addDoc(favouritesCollection, { ...item, userId: user.uid, createdAt: serverTimestamp() })
+            .then(() => {
+              console.log('Favorite added successfully');
             })
             .catch((error) => {
-            console.log('Error querying favorites: ', error);
+              console.log('Error adding favorite: ', error);
             });
-            }
+        } else {
+          const q = query(favouritesCollection, where('idMeal', '==', item.idMeal), where('userId', '==', user.uid));
+          getDocs(q)
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                deleteDoc(doc.ref)
+                  .then(() => {
+                    console.log('Favorite removed successfully');
+                    setFavourite((prevFavorites) =>
+                      prevFavorites.filter((favItem) => favItem.idMeal !== item.idMeal)
+                    );
+                  })
+                  .catch((error) => {
+                    console.log('Error removing favorite: ', error);
+                  });
+              });
+            })
+            .catch((error) => {
+              console.log('Error querying favorites: ', error);
+            });
         }
+      };
+      
 
     useEffect(() => {
         if (user) {

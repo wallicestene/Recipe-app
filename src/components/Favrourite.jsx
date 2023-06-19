@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useFavourite } from './DataLayer'
 import { Delete } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
-import { collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, where } from 'firebase/firestore'
+import { collection, deleteDoc,  getDocs,  query, where } from 'firebase/firestore'
 import { db } from '../Firebase'
 
 
 const Favrourite = ({favourite, setFavourite}) => {
-
+    const [{user}, dispatch] = useFavourite()
 const favouritesCollection = collection(db, "favourites")
 
     const removeFromFavorites = (item) => {
-    const q = query(favouritesCollection, where('idMeal', '==', item.idMeal));
+    const q = query(favouritesCollection, where('idMeal', '==', item.idMeal), where('userId', '==', user.uid));
     getDocs(q)
         .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
