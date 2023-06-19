@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useFavourite } from './DataLayer'
-import { Delete } from '@mui/icons-material'
+import { Delete, Favorite } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { collection, deleteDoc,  getDocs,  query, where } from 'firebase/firestore'
 import { db } from '../Firebase'
@@ -40,14 +40,13 @@ const favouritesCollection = collection(db, "favourites")
         </div>
         {
            favourite && favourite.length > 0 ? (
-                <div className='flex flex-col gap-3 lg:gap-5'>
+                <div className='flex flex-col gap-3 lg:gap-5 '>
             {favourite.map((item, index) => (
-                
-                <div className='flex justify-between items-center shadow-sm p-2' key={index} >
+                <div className='flex justify-between items-center shadow p-2' key={index} >
                     <Link to={`/recipe/${item.strMeal}`} >
                     <div className='flex items-center gap-5'>
                         <div>
-                            <img src={item.strMealThumb} alt="" className='h-20 w-20 rounded-full object-contain' />
+                            <img src={item.strMealThumb} alt="" className='lg:h-20 lg:w-20 h-16 w-16 rounded-full object-contain' />
                         </div>
                         <div>
                            <h1 className=' font-LosefinSans lg:text-lg text-base'>{item.strMeal}</h1> 
@@ -58,13 +57,13 @@ const favouritesCollection = collection(db, "favourites")
                         <Delete/>
                     </div>
                 </div>
-                
+              
             ))}
            
         </div>
             ) : (
                 <div className=' flex items-center justify-center'>
-                    <p className=' text-gray-600  text-center'>Click the ❤️ to add to Favourites</p>
+                    <p className=' text-gray-600  text-center'>Click the <span className=' text-red'><Favorite/> </span>button to add to Favourites</p>
                 </div>
                 
             )
