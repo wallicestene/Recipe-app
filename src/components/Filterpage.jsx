@@ -24,7 +24,7 @@ const Filterpage = ({searchMeal, showFavourites, setShowFavourites}) => {
                 {/* <Tune className=' text-slate-600'/> */}
             </form>
         </div>
-        <div className="filter-right hover:cursor-pointer flex items-center text-2xl bg-rose-500 p-1 gap-1 lg:gap-3 lg:p-3 text-white rounded-md" onClick={() => setShowFavourites(!showFavourites)}>
+        <div className="filter-right hover:cursor-pointer flex items-center text-2xl bg-rose-500 py-3 p-1 gap-1 lg:gap-3 lg:p-3 text-white rounded-md" onClick={() => setShowFavourites(!showFavourites)}>
         {showFavourites ? <Close/>: <Favorite/> }
           <h1 className=' text-sm font-LosefinSans'>Favourites</h1>
         </div>

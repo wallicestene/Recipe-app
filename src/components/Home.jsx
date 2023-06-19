@@ -194,8 +194,9 @@ const Home = () => {
             )}
             </div>
 
-         <div className="popular mt-5 mb-5">
+         <div className=" mt-5 mb-5 h-96">
             <h1 className='text-3xl font-Lora font-bold mb-5'>Popular Recipes</h1>
+            <div className='popular bg-gray-50 h-96 overflow-y-scroll'>
             {
                 popular.length > 0 ?
                 (
@@ -233,6 +234,7 @@ const Home = () => {
             }
                 </div>
             </div>
+        </div>
         </div>
         {
             showFavourites && 

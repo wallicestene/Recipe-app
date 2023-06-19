@@ -74,7 +74,7 @@ const signIn = (e) => {
   
 
   return (
-    <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center bg-[url(https:\/\/www.themealdb.com\/images\/media\/meals\/urzj1d1587670726.jpg)] bg-center bg-cover text-white p-2'>
+    <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center bg-[url(https:\/\/www.themealdb.com\/images\/media\/meals\/urzj1d1587670726.jpg)] bg-center bg-cover text-white p-2 font-LosefinSans'>
         <div className=' text-center'>
             <h1 className=' lg:text-3xl text-2xl font-LosefinSans font-bold'>Recipe Realm</h1>
         </div>
@@ -95,9 +95,9 @@ const signIn = (e) => {
                 </div>
 
                 <div className=' w-72 border-b-2 border-gray-400'>
-                    <p>User's Name</p>
+                    <p>First Name</p>
                 <input type="text"
-                placeholder='Name (Required if registering)'
+                placeholder='First Name (Required if registering)'
                 required
                 className=' w-full  py-2 px-5 outline-none border-none rounded-sm '
                  value={name} 
