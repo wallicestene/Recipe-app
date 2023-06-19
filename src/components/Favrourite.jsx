@@ -35,14 +35,14 @@ const favouritesCollection = collection(db, "favourites")
 
   return (
     <div className='fav bg-gray-50 rounded-md shadow-lg border text-slate-800 lg:h-96 h-72 overflow-y-scroll relative scroll-smooth'>
-        <div className='px-5 py-3 border-b-2 mb-2 sticky top-0 bg-white'>
+        <div className='px-5 py-3 border-b-2 mb-2 sticky top-0 bg-white z-40'>
             <h1 className=' font-Lora font-bold tracking-wide text-lg '>Favourites</h1>
         </div>
         {
            favourite && favourite.length > 0 ? (
                 <div className='flex flex-col gap-3 lg:gap-5 '>
             {favourite.map((item, index) => (
-                <div className='flex justify-between items-center shadow p-2' key={index} >
+                <div className='flex justify-between items-center shadow p-2 transition ease-in-out delay-75  hover:-translate-x-1 hover:scale-90 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white' key={index} >
                     <Link to={`/recipe/${item.strMeal}`} >
                     <div className='flex items-center gap-5'>
                         <div>

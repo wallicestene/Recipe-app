@@ -238,7 +238,7 @@ const Home = () => {
         </div>
         {
             showFavourites && 
-            <div className='absolute top-14 z-40 w-full lg:w-96 lg:right-0'>
+            <div className='absolute top-14 z-40 w-full lg:w-2/5 lg:right-0'>
             <Favrourite favourite={favourite} setFavourite={setFavourite}/>
             </div>
         }

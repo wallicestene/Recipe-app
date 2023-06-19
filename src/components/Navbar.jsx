@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     
-    <div className='navbar flex items-center lg:justify-between justify-between  mt-3 shadow-lg lg:h-20 h-16 p-2'>
+    <div className='navbar  flex items-center lg:justify-between justify-between  mt-3 shadow-lg lg:h-20 h-16 p-2'>
         <div className="nav-right  w-1/2 flex items-center gap-4 h-20">
             <img src={logo} alt="" className='w-14 object-contain rounded-md'/>
             <h1 className=' font-Lora lg:text-2xl font-bold tracking-wide'>Recipe Realm</h1>
