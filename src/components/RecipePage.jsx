@@ -57,16 +57,16 @@ const RecipePage = () => {
         <div className='left lg:w-full grid grid-cols-1 lg:gap-5 lg:flex flex-col gap-3'>
             <div className='relative'>
                 <img src={recipe.strMealThumb} alt="" className='w-full lg:h-72 lg:object-cover opacity-90 rounded-lg'/>
-            <div className='absolute top-3 left-4 bg-slate-800 text-white rounded-md p-1 hover:cursor-pointer' onClick={() => history.go(-1)}>
+            <div className='absolute top-3 left-4 bg-gray-200 bg-opacity-70 rounded-md p-1 hover:cursor-pointer' onClick={() => history.go(-1)}>
              <KeyboardBackspace fontSize='large'/>   
             </div>
-            <div className='absolute top-1/2 left-4 flex flex-col gap-4'>
+            <div className='absolute top-1/2 left-4 flex flex-col gap-4 w-fit'>
               <div className=' bg-gray-300 lg:p-2 p-1 rounded-sm shadow-md bg-opacity-70'>
             <h1 className=' font-LosefinSans lg:text-xl '>{recipe.strMeal}</h1>
             </div>
             {
               recipe.strYoutube &&
-              <div className=' bg-gray-300  p-1 rounded-sm shadow-md bg-opacity-70 w-fit'>
+              <div className=' bg-gray-300 px-1 rounded-full shadow-md bg-opacity-70 w-fit'>
               <a href={recipe.strYoutube} className='flex items-center'>
              <h1 className='font-LosefinSans lg:text-xl  '>Watch Video</h1>              <div>
               <div className='text-slate-900'>
