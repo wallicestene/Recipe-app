@@ -291,7 +291,7 @@ const Home = () => {
                   {
                       skeleton.map((item, index) => (
                          <div key={index} className='shadow-md w-fit'>
-                           <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={265} height={300} />
+                           <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={265} height={280} />
                          </div>
                       ))
                   }
