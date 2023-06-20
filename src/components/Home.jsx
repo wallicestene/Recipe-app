@@ -32,6 +32,7 @@ const Home = () => {
    
     const mealsLetter = ["a", "b", "c", "d", "e"]
 
+    const skeleton = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,,18,19,20]
 
     const favouritesCollection = collection(db, "favourites")
 
@@ -226,7 +227,15 @@ const Home = () => {
                 ))}
                 </ul>
             ) : (
-                <h1>Loading...</h1>
+              <div className='skeleton flex gap-3 overflow-x-auto'>
+              {
+                  skeleton.map((item, index) => (
+                     <div key={index} className='shadow-md'>
+                       <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={120} height={80} />
+                     </div>
+                  ))
+              }
+          </div>
             )}
             </div>
 
@@ -234,7 +243,7 @@ const Home = () => {
           <div className='flex items-center mb-5 gap-3 '>
               <h1 className=' text-3xl font-Lora font-bold '>Popular Recipes</h1>
               <div onClick={() => setShowFilterBy(!showFilterBy)} className=' hover:cursor-pointer'>
-                <p className=' px-3 py-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'><span className=' text-white'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
+                <p className=' px-3 py-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-800 text-white text-lg font'>Filter <span className=' text-white'>{!showFilterBy ? <Tune /> : <Close/>}</span></p>
               </div>
               {
                 showFilterBy &&
@@ -278,11 +287,15 @@ const Home = () => {
                     ))}
                    </div>
                 ) :(
-                   <div>
-                    {popular.map((item, index) => (
-                        <Skeleton variant="rectangular" width={210} height={118} />
-                    ))}
-                   </div>
+                  <div className='skeleton grid grid-cols-1 place-items-center gap-5 md:grid-cols-4 lg:grid-cols-4 lg:place-items-center rounded-lg'>
+                  {
+                      skeleton.map((item, index) => (
+                         <div key={index} className='shadow-md w-fit'>
+                           <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={265} height={300} />
+                         </div>
+                      ))
+                  }
+              </div>
                 )
             }
                 </div>

@@ -8,6 +8,9 @@
 body::-webkit-scrollbar{
   display: none;
 }
+.skeleton::-webkit-scrollbar{
+  display: none;
+}
 .ing::-webkit-scrollbar{
   @apply w-4 
 }
