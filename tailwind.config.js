@@ -8,7 +8,8 @@ export default {
     extend: {
       fontFamily:{
         Lora: "Lora",
-        LosefinSans: "Josefin Sans"
+        LosefinSans: "Josefin Sans",
+        poppins: "Poppins"
       },
       colors: {
         red: "#ff0000"

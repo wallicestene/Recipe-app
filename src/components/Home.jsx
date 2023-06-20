@@ -230,9 +230,9 @@ const Home = () => {
 
          <div className=" mt-5 mb-5 h-96 relative">
           <div className='flex items-center mb-5 gap-3 '>
-              <h1 className=' text-2xl font-Lora font-bold '>Popular Recipes</h1>
-              <div onClick={() => setShowFilterBy(!showFilterBy)}>
-                <p className=' p-1 rounded-xl bg-slate-300'>Filter by {!showFilterBy ? <Tune/> : <Close/>}</p>
+              <h1 className=' text-3xl font-Lora font-bold '>Popular Recipes</h1>
+              <div onClick={() => setShowFilterBy(!showFilterBy)} className=' hover:cursor-pointer'>
+                <p className=' p-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'>Filter by <span className=' text-black'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
               </div>
               {
                 showFilterBy &&
