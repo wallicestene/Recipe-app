@@ -236,8 +236,13 @@ const Home = () => {
               </div>
               {
                 showFilterBy &&
-                <div className=' rounded-md p-1 bg-gray-50 shadow-xl lg:w-96 w-72 h-fit absolute z-40 lg:top-0 top-10 left-1/2 right-1/2 -translate-x-1/2'>
-                <FilterBy filterByArea={filterByArea} filterByIngredient={filterByIngredient}/>
+                <div className=' rounded-md p-1 bg-gray-50 shadow-xl lg:w-96 w-72 h-fit absolute z-40 top-10 lg:left-96 left-1/2 right-1/2 -translate-x-1/2'>
+                <FilterBy 
+                filterByArea={filterByArea} 
+                filterByIngredient={filterByIngredient}
+                showFilterBy={showFilterBy}
+                setShowFilterBy={setShowFilterBy}
+                />
               </div>
               }
           </div>

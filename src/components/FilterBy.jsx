@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-const FilterBy = ({filterByArea, filterByIngredient}) => {
+const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilterBy}) => {
     const [area, setArea] = useState([])
 
     const [ingredients, setIngredients] = useState([])
@@ -34,7 +34,10 @@ const FilterBy = ({filterByArea, filterByIngredient}) => {
                area && area.length > 0 ? (
                     <>
                     {area.map((place, index) => (
-                        <li className='bg-slate-200 lg:p-2 md:p-2 p-1 rounded-full hover:cursor-pointer' key={index} onClick={() => filterByArea(place.strArea)}>
+                        <li className='bg-slate-200 lg:p-2 md:p-2 p-1 rounded-full hover:cursor-pointer' key={index} onClick={() => {
+                            filterByArea(place.strArea)
+                            setShowFilterBy(!showFilterBy)
+                        }}>
                             <div>{place.strArea}</div>
                         </li>
                     ))}
@@ -52,7 +55,10 @@ const FilterBy = ({filterByArea, filterByIngredient}) => {
                area &&  area.length > 0 ? (
                     <div className='grid lg:grid-cols-3 grid-cols-2 gap-3'>
                     {ingredients.map((ingredient, index) => (
-                        <li className='bg-slate-200 lg:p-2  h-fit   md:py-2 py-1 rounded-full text-sm tracking-tighter text-center' key={index} onClick={() => filterByIngredient(ingredient.strIngredient)}>
+                        <li className='bg-slate-200 lg:p-2  h-fit   md:py-2 py-1 rounded-full text-sm lg:text-base text-center hover:cursor-pointer' key={index} onClick={() => {
+                            filterByIngredient(ingredient.strIngredient)
+                            setShowFilterBy(!showFilterBy)
+                        }}>
                             {ingredient.strIngredient}
                         </li>
                     ))}
