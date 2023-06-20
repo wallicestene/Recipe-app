@@ -27,17 +27,14 @@ const FilterBy = ({filterByArea, filterByIngredient}) => {
     <section className=''>
         <div>
         <div>
-            <h1>Filter By</h1>
-        </div>
-        <div>
             <div>
-                <h1>Area</h1>
-        <ul className="filter-by flex overflow-x-scroll gap-2">
+                <h1 className=' font-LosefinSans text-lg border-b-2 mb-1'>Area</h1>
+        <ul className="filter-by flex overflow-x-scroll gap-2 p-2">
             {
                area && area.length > 0 ? (
                     <>
                     {area.map((place, index) => (
-                        <li className='bg-slate-200 lg:p-2 md:p-2 p-1 rounded-full' key={index} onClick={() => filterByArea(place.strArea)}>
+                        <li className='bg-slate-200 lg:p-2 md:p-2 p-1 rounded-full hover:cursor-pointer' key={index} onClick={() => filterByArea(place.strArea)}>
                             <div>{place.strArea}</div>
                         </li>
                     ))}
@@ -49,11 +46,11 @@ const FilterBy = ({filterByArea, filterByIngredient}) => {
         </ul>
             </div>
             <div>
-            <h1>Ingredients</h1>
-        <ul className="filter-by flex overflow-scroll gap-2 h-72">
+            <h1 className=' font-LosefinSans text-lg border-b-2 mb-1'>Ingredients</h1>
+        <ul className="filter-by flex overflow-y-scroll gap-2 h-60">
             {
                area &&  area.length > 0 ? (
-                    <div className='grid grid-cols-3 gap-3'>
+                    <div className='grid lg:grid-cols-3 grid-cols-2 gap-3'>
                     {ingredients.map((ingredient, index) => (
                         <li className='bg-slate-200 lg:p-2  h-fit   md:py-2 py-1 rounded-full text-sm tracking-tighter text-center' key={index} onClick={() => filterByIngredient(ingredient.strIngredient)}>
                             {ingredient.strIngredient}
