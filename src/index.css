@@ -38,6 +38,18 @@ body::-webkit-scrollbar{
 .popular::-webkit-scrollbar{
   @apply w-4 
 }
+.area::-webkit-scrollbar-thumb{
+  @apply rounded-xl bg-slate-500
+}
+.area::-webkit-scrollbar{
+  @apply w-4 
+}
+.ingredients::-webkit-scrollbar-thumb{
+  @apply rounded-xl bg-slate-500
+}
+.ingredients::-webkit-scrollbar{
+  @apply w-4 
+}
 
 
 /* .image-con{

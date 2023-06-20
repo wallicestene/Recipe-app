@@ -28,7 +28,7 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
         <div>
             <div>
                 <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>Area</h1>
-        <ul className="filter-by flex overflow-x-scroll gap-2 p-2">
+        <ul className="area filter-by flex overflow-x-scroll gap-2 p-2">
             {
                area && area.length > 0 ? (
                     <>
@@ -57,12 +57,12 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
             </div>
             <div>
             <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>Ingredients</h1>
-        <ul className="filter-by flex overflow-y-scroll gap-2 h-60">
+        <ul className="ingredients filter-by flex overflow-y-scroll gap-2 h-60">
             {
                ingredients &&  ingredients.length > 0 ? (
                     <div className='grid lg:grid-cols-3 grid-cols-2 gap-3'>
                     {ingredients.map((ingredient, index) => (
-                        <li className=' bg-slate-200 lg:p-2  h-fit p-2 rounded-lg shadow-md text-sm lg:text-base text-center hover:cursor-pointer || transition ease-in-out delay-100 hover:-translate-x-1 hover:scale-105 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white' key={index} onClick={() => {
+                        <li className=' bg-slate-200 lg:p-2  h-fit p-2 rounded-lg shadow-md text-sm lg:text-base text-center hover:cursor-pointer || transition ease-in-out delay-100 hover:translate-x-1 hover:scale-105 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white' key={index} onClick={() => {
                             filterByIngredient(ingredient.strIngredient)
                             setShowFilterBy(!showFilterBy)
                         }}>
