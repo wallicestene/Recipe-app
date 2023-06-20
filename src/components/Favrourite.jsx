@@ -42,7 +42,7 @@ const favouritesCollection = collection(db, "favourites")
            favourite && favourite.length > 0 ? (
                 <div className='flex flex-col gap-3 lg:gap-5 '>
             {favourite.map((item, index) => (
-                <div className='flex justify-between items-center shadow p-2 transition ease-in-out delay-100  hover:-translate-x-1 hover:scale-90 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white' key={index} >
+                <div className='flex justify-between items-center shadow p-2 transition ease-in-out delay-100  hover:-translate-x-1 hover:scale-90 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white hover:rounded-xl' key={index} >
                     <Link to={`/recipe/${item.strMeal}`} >
                     <div className='flex items-center gap-5'>
                         <div>

@@ -138,7 +138,7 @@ const Home = () => {
         .catch(err => console.log(err.message))
     }, [])
   return (
-    <div className='home relative'>
+    <div className='home relative ' >
         <Filterpage searchMeal={searchMeal} showFavourites={showFavourites} setShowFavourites={setShowFavourites}/>
         <div>
             <div className="discover mt-5 text-slate-800">
@@ -196,7 +196,7 @@ const Home = () => {
 
          <div className=" mt-5 mb-5 h-96">
             <h1 className='text-3xl font-Lora font-bold mb-5'>Popular Recipes</h1>
-            <div className='popular bg-gray-50 h-96 overflow-y-scroll'>
+            <div className='popular bg-gray-50 h-full overflow-y-scroll lg:p-5'>
             {
                 popular.length > 0 ?
                 (
