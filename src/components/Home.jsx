@@ -234,11 +234,11 @@ const Home = () => {
           <div className='flex items-center mb-5 gap-3 '>
               <h1 className=' text-3xl font-Lora font-bold '>Popular Recipes</h1>
               <div onClick={() => setShowFilterBy(!showFilterBy)} className=' hover:cursor-pointer'>
-                <p className=' p-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'><span className=' text-white'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
+                <p className=' px-3 py-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'><span className=' text-white'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
               </div>
               {
                 showFilterBy &&
-                <div className=' rounded-md p-1 bg-gray-50 shadow-xl lg:w-96 w-72 h-fit absolute z-40 top-10 lg:left-96 left-1/2 right-1/2 -translate-x-1/2'>
+                <div className=' rounded-md p-1 bg-gray-50 shadow-2xl lg:w-96 w-80 h-fit absolute z-40 top-10 lg:left-96 left-1/2 right-1/2 -translate-x-1/2'>
                 <FilterBy 
                 filterByArea={filterByArea} 
                 filterByIngredient={filterByIngredient}
