@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Filterpage from './Filterpage'
-import { Favorite,FavoriteBorderOutlined } from '@mui/icons-material'
+import { Close, Favorite,FavoriteBorderOutlined, Tune } from '@mui/icons-material'
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
 import { Skeleton } from '@mui/material'
 import { addDoc, collection, deleteDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore'
 import { db } from '../Firebase'
+import FilterBy from './FilterBy'
 
 const Home = () => {
     const [discover,setDiscover] = useState([])
@@ -17,15 +18,21 @@ const Home = () => {
 
     const [favourite, setFavourite] = useState([]);
 
+    const [value, setValue] = useState(2)
+
     const [searched, setSearched] = useState(false)
 
     const [found, setFound] = useState(true)
 
     const [showFavourites, setShowFavourites] = useState(false)
 
+    const [showFilterBy, setShowFilterBy] = useState(false)
+
     const [{user}, dispatch] = useFavourite()
    
-    
+    const mealsLetter = ["a", "b", "c", "d", "e"]
+
+
     const favouritesCollection = collection(db, "favourites")
 
     const handleClick = (item) => {
@@ -130,13 +137,40 @@ const Home = () => {
         .catch(err => console.log(err.message))
 
     // Popular
-    fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=c")
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${mealsLetter[value]}`)
         .then(res => res.json())
         .then(data =>{
             setPopular(data.meals)
         })
         .catch(err => console.log(err.message))
-    }, [])
+    }, [value])
+// Filter by Area function
+    const filterByArea = (area) =>{
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+        .then(res => res.json())
+        .then(data =>{
+          if (data.meals && data.meals.length > 0) {
+            setPopular(data.meals)
+          } else {
+            console.log("No meals found");
+          }
+        })
+        .catch(err => console.log(err.message))
+    }
+    // Filter by Ingredient function
+    const filterByIngredient = (ingredient) =>{
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+        .then(res => res.json())
+        .then(data =>{
+          if (data.meals && data.meals.length > 0) {
+            setPopular(data.meals);
+          } else {
+            console.log("No meals found");
+          }
+        })
+        .catch(err => console.log(err.message))
+    }
+
   return (
     <div className='home relative ' >
         <Filterpage searchMeal={searchMeal} showFavourites={showFavourites} setShowFavourites={setShowFavourites}/>
@@ -194,8 +228,20 @@ const Home = () => {
             )}
             </div>
 
-         <div className=" mt-5 mb-5 h-96">
-            <h1 className='text-3xl font-Lora font-bold mb-5'>Popular Recipes</h1>
+         <div className=" mt-5 mb-5 h-96 relative">
+          <div className='flex items-center mb-5 gap-3 '>
+              <h1 className=' text-2xl font-Lora font-bold '>Popular Recipes</h1>
+              <div onClick={() => setShowFilterBy(!showFilterBy)}>
+                <p className=' p-1 rounded-xl bg-slate-300'>Filter by {!showFilterBy ? <Tune/> : <Close/>}</p>
+              </div>
+              {
+                showFilterBy &&
+                <div className=' rounded-md p-1 bg-gray-50 shadow-xl w-96 h-fit absolute z-40 lg:top-0 top-10 left-1/2 right-1/2 -translate-x-1/2'>
+                <FilterBy filterByArea={filterByArea} filterByIngredient={filterByIngredient}/>
+              </div>
+              }
+          </div>
+           
             <div className='popular bg-gray-50 h-full overflow-y-scroll lg:p-5'>
             {
                 popular.length > 0 ?
