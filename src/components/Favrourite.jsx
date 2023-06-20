@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { collection, deleteDoc,  getDocs,  query, where } from 'firebase/firestore'
 import { db } from '../Firebase'
 
-
 const Favrourite = ({favourite, setFavourite}) => {
 
     const [{user}, dispatch] = useFavourite()
@@ -40,11 +39,12 @@ const Favrourite = ({favourite, setFavourite}) => {
         <div className='px-5 py-3 border-b-2 mb-2 sticky top-0 bg-white z-40'>
             <h1 className=' font-Lora font-bold tracking-wide text-lg '>Favourites</h1>
         </div>
+
         {
            favourite && favourite.length > 0 ? (
                 <div className='flex flex-col gap-3 lg:gap-5 '>
             {favourite.map((item, index) => (
-                <div className='flex justify-between bg-gray-100 rounded-xl items-center shadow p-2 transition ease-in-out delay-100  hover:-translate-x-1 hover:scale-90 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white hover:rounded-xl' key={index} >
+                <div className='flex justify-between bg-gray-100 rounded-xl items-center shadow p-2 transition ease-in-out delay-100  hover:-translate-x-1 hover:scale-90 duration-200 hover:bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500 hover:text-white hover:rounded-xl' key={index}>
                     <Link to={`/recipe/${item.strMeal}`} >
                     <div className='flex items-center gap-5'>
                         <div>
@@ -59,7 +59,6 @@ const Favrourite = ({favourite, setFavourite}) => {
                         <Delete/>
                     </div>
                 </div>
-              
             ))}
            
         </div>

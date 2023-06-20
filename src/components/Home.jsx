@@ -4,7 +4,7 @@ import { Close, Favorite,FavoriteBorderOutlined, Tune } from '@mui/icons-materia
 import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { useFavourite } from './DataLayer'
 import Favrourite from './Favrourite'
-import { Skeleton } from '@mui/material'
+import { Alert, Skeleton } from '@mui/material'
 import { addDoc, collection, deleteDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore'
 import { db } from '../Firebase'
 import FilterBy from './FilterBy'
@@ -166,6 +166,7 @@ const Home = () => {
             setPopular(data.meals);
           } else {
             console.log("No meals found");
+
           }
         })
         .catch(err => console.log(err.message))
@@ -180,6 +181,7 @@ const Home = () => {
                 {!found && <h1 className='text-3xl font-Lora font-bold mb-5'>Not Found</h1>}
                 {
                     discover ? (
+                      
                         <div className=' relative h-72 font-LosefinSans lg:w-full bg-black rounded-xl overflow-hidden shadow-xl'>
                             <Link to={`/recipe/${discover.strMeal}`}>
                             <div className=' w-full lg:w-full lg:object-cover bg-slate-900  h-72'>
@@ -232,7 +234,7 @@ const Home = () => {
           <div className='flex items-center mb-5 gap-3 '>
               <h1 className=' text-3xl font-Lora font-bold '>Popular Recipes</h1>
               <div onClick={() => setShowFilterBy(!showFilterBy)} className=' hover:cursor-pointer'>
-                <p className=' p-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'>Filter by <span className=' text-black'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
+                <p className=' p-1 rounded-md bg-gradient-to-r from-gray-800 via-slate-600 to-slate-300 text-white text-lg font-poppins'><span className=' text-white'>{!showFilterBy ? <Tune/> : <Close/>}</span></p>
               </div>
               {
                 showFilterBy &&

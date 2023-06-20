@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage'
 import { useFavourite } from './components/DataLayer'
 import { auth } from './Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import { CircularProgress } from '@mui/material'
 
 const App = () => {
   const [{ user }, dispatch] = useFavourite()
@@ -40,7 +41,7 @@ const App = () => {
 
   if (loading) {
     // Render loading state if the authentication state is still loading
-    return <div>Loading...</div>
+    return <div className=' grid place-items-center h-screen'><CircularProgress /></div>
   }
 
   return (
