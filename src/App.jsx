@@ -10,10 +10,12 @@ import { useFavourite } from './components/DataLayer'
 import { auth } from './Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { CircularProgress } from '@mui/material'
+import { toast } from 'react-hot-toast'
 
 const App = () => {
   const [{ user }, dispatch] = useFavourite()
   const [loading, setLoading] = useState(true)
+  const [showToast, setShowToast] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
@@ -27,6 +29,7 @@ const App = () => {
             displayName: userAuth.displayName
           }
         })
+        setShowToast(true)
       } else {
         dispatch({
           type: 'LOG_OUT',
@@ -35,13 +38,25 @@ const App = () => {
       }
       setLoading(false)
     })
-
     return unsubscribe
   }, [dispatch])
 
+  useEffect(() => {
+    if (showToast && user?.displayName) {
+      toast.custom(
+        <div className='lg:p-5 p-3 shadow-lg border-b bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500  rounded-xl'>
+         <h1 className=' font-Shadows text-lg font-semibold tracking-wide'>Welcome back, <strong className='uppercase font-poppins'>{user.displayName}!</strong></h1>
+        <p className='text-base lg:text-lg font-LosefinSans  text-white'>Get ready to explore delicious recipes and discover new favorites.</p>
+        </div>
+      ,{
+        duration: 5000
+      })
+      setShowToast(false)
+    }
+  }, [showToast, user])
+
   if (loading) {
-    // Render loading state if the authentication state is still loading
-    return <div className=' grid place-items-center h-screen'><CircularProgress /></div>
+    return <div className='grid place-items-center h-screen'><CircularProgress /></div>
   }
 
   return (

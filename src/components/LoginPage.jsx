@@ -2,8 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import React, { useState } from 'react'
 import { auth } from '../Firebase'
 import { useFavourite } from './DataLayer'
-import { Avatar } from '@mui/material'
-import { Add } from '@mui/icons-material'
+import { toast } from 'react-hot-toast'
 
 const LoginPage = () => {
     const [email, setEmail] = useState("")
@@ -19,7 +18,18 @@ const signIn = (e) => {
     e.preventDefault();
 
     if(!name){
-        return alert("please enter a first name")
+        return toast.error("Please enter a full name",{
+          duration: 4000,
+          position: 'top-center',
+        
+          // Styling
+          style: {
+            background: '#454b4a',
+            color: "white",
+            padding: "10px"
+          },
+        });
+
       };
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -40,13 +50,34 @@ const signIn = (e) => {
                 displayName: name,
               },
             });
+            toast.success("Account Created",{
+              duration: 3000,
+              position: 'top-center',
+            
+              // Styling
+              style: {
+                background: '#454b4a',
+                color: "white",
+                padding: "10px"
+              },
+            });
           })
           .catch((error) => {
             console.log("Error updating user profile:", error);
           });
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error("Email-already-in-use. Use another email.",{
+          duration: 3000,
+          position: 'top-center',
+        
+          // Styling
+          style: {
+            background: '#454b4a',
+            color: "white",
+            padding: "10px"
+          },
+        });
       });
   };
   
@@ -64,15 +95,22 @@ const signIn = (e) => {
               photoURL: userCredential.user?.photoURL,
               displayName: userCredential.user.displayName,
             },
-          });
-
+          })
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error("user-not-found. Click the Sign Up button to create Account",{
+          duration: 3000,
+          position: 'top-center',
+        
+          // Styling
+          style: {
+            background: '#454b4a',
+            color: "white",
+            padding: "10px"
+          },
+        });
       });
   };
-  
-
   return (
     <div className='loginPage  border rounded w-96  py-5  flex flex-col gap-20 items-center bg-[url(https:\/\/www.themealdb.com\/images\/media\/meals\/urzj1d1587670726.jpg)] bg-center bg-cover text-white p-2 font-LosefinSans'>
         <div className=' text-center'>

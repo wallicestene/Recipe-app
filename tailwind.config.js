@@ -9,7 +9,9 @@ export default {
       fontFamily:{
         Lora: "Lora",
         LosefinSans: "Josefin Sans",
-        poppins: "Poppins"
+        poppins: "Poppins",
+        Shadows: "Shadows Into Light",
+        Parisienne : 'Parisienne'
       },
       colors: {
         red: "#ff0000"
