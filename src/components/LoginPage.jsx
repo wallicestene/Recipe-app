@@ -18,7 +18,7 @@ const signIn = (e) => {
     e.preventDefault();
 
     if(!name){
-        return toast.error("Please enter a full name",{
+        return toast.error("Please enter a first name",{
           duration: 4000,
           position: 'top-center',
         
@@ -67,7 +67,7 @@ const signIn = (e) => {
           });
       })
       .catch((error) => {
-        toast.error("Email-already-in-use. Use another email.",{
+        toast.error("Email-already-in-use. Use another email or Log In",{
           duration: 3000,
           position: 'top-center',
         
@@ -98,7 +98,8 @@ const signIn = (e) => {
           })
       })
       .catch((error) => {
-        toast.error("user-not-found. Click the Sign Up button to create Account",{
+        if(error.message == "Firebase: Error (auth/user-not-found)."){
+          toast.error("User not found",{
           duration: 3000,
           position: 'top-center',
         
@@ -109,6 +110,19 @@ const signIn = (e) => {
             padding: "10px"
           },
         });
+        }else{
+          toast.error(error.message,{
+            duration: 3000,
+            position: 'top-center',
+          
+            // Styling
+            style: {
+              background: '#454b4a',
+              color: "white",
+              padding: "10px"
+            },
+          });
+        }
       });
   };
   return (
@@ -161,7 +175,7 @@ const signIn = (e) => {
                 onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className='flex items-center gap-10 mt-10'>
-                    <button onClick={Login} className=' h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Login</button>
+                    <button onClick={Login} className=' h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Log In</button>
                 {/* <p className=''> register</p> */}
                 <button onClick={signIn} className='  h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Sign Up</button>
                 </div>

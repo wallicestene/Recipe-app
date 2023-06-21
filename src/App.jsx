@@ -42,14 +42,14 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (showToast && user?.displayName) {
+    if (showToast &&user?.displayName) {
       toast.custom(
         <div className='lg:p-5 p-3 shadow-lg border-b bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500  rounded-xl'>
          <h1 className=' font-Shadows text-lg font-semibold tracking-wide'>Welcome back, <strong className='uppercase font-poppins'>{user.displayName}!</strong></h1>
         <p className='text-base lg:text-lg font-LosefinSans  text-white'>Get ready to explore delicious recipes and discover new favorites.</p>
         </div>
       ,{
-        duration: 5000
+        duration: 3500
       })
       setShowToast(false)
     }

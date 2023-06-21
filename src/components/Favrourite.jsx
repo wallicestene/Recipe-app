@@ -64,7 +64,7 @@ const Favrourite = ({favourite, setFavourite}) => {
         </div>
             ) : (
                 <div className=' flex items-center justify-center'>
-                    <p className=' text-gray-600  text-center'>Click the <span className=' text-red'><Favorite/> </span>button to add to Favourites</p>
+                    <p className=' text-gray-600  text-center'>Click the <span className=' text-red'><Favorite/> </span>button to add to Favorites</p>
                 </div>
                 
             )
