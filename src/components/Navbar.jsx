@@ -64,15 +64,15 @@ const Navbar = () => {
         <div>
      <div className=' w-fit flex gap-2 p-1 border-b-2'>
       <div className=' w-14 h-14 rounded-full overflow-hidden'>
-        <img src={user.photoURL} alt="" className=' h-full w-full object-cover'/>
+      {!user?.photoURL ? (<div  className=' w-full h-full flex items-center justify-center font-LosefinSans text-3xl p-1'>{user?.displayName[0].toUpperCase()}</div>) : isURL(user?.photoURL) ? (<img src={user?.photoURL} alt="" className='w-full h-full'/>): (<div className=' w-full h-full flex items-center justify-center font-LosefinSans text-3xl p-1'>{user?.displayName[0].toUpperCase()}</div> )}
       </div>
      <div className=' grid place-items-center'>
      <p className="text-sm first-letter:uppercase">{user.displayName}</p>
      <p className="text-sm">{user.email}</p>
      </div>
      </div>
-     <div className='lg:p-3 p-2 grid place-items-center ' >
-      <h1 className='cursor-pointer inline border p-1 rounded-md text-xs'>Log Out <Logout fontSize='small'/></h1>
+     <div className='lg:p-3 p-2 grid place-items-center' >
+      <h1 className='cursor-pointer inline border p-1 rounded-md text-xs' onClick={() => signOut(auth)}>Log Out <Logout fontSize='small'/></h1>
      </div>
      </div>
     </div>
