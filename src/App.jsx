@@ -67,7 +67,10 @@ const App = () => {
         </div>
       ) : (
         <Router>
-          <Navbar />
+          <div className=' sticky top-0 z-50 bg-white'>
+            <Navbar />
+          </div>
+          
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/recipe/:name' component={RecipePage} />

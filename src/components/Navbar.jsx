@@ -56,7 +56,7 @@ const Navbar = () => {
             <h1 className=' text-sm text-gray-500 font-LosefinSans first-letter:uppercase'>{user.displayName ? user.displayName : "Profile"}{showLogOut ? <KeyboardArrowUp fontSize='small'/> : <KeyboardArrowDown fontSize='small'/>}</h1>
           </div>
            <div className='h-10 w-10 bg-gradient-to-r from-gray-300 to-slate-900  rounded-full overflow-hidden grid place-items-center text-white border-rose-500'>
-           {!user?.photoURL ? (<div  className=' w-full h-full flex items-center justify-center font-poppins text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div>) : isURL(user?.photoURL) ? (<img src={user?.photoURL} alt="" className='w-full h-full'/>): (<div className=' w-full h-full flex items-center justify-center font-poppins font-bold text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div> )}
+           {!user?.photoURL ? (<div  className=' w-full h-full flex items-center justify-center font-poppins text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div>) : isURL(user?.photoURL) ? (<img src={user?.photoURL} alt="" className='w-full h-full object-cover'/>): (<div className=' w-full h-full flex items-center justify-center font-poppins font-bold text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div> )}
           </div>
         </div>
       <div className={` ${!showLogOut ? " hidden" : ""} absolute z-50 top-11 bg-gradient-to-r from-gray-700 to-slate-500 rounded-md  -left-20 lg:-left-24 border-2 text-white p-1 shadow-xl`} >
