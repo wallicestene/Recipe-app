@@ -27,7 +27,7 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
         <div>
         <div>
             <div>
-                <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>Area</h1>
+                <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>By Area:</h1>
         <ul className="area filter-by flex overflow-x-scroll gap-2 p-2">
             {
                area && area.length > 0 ? (
@@ -56,7 +56,7 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
         </ul>
             </div>
             <div>
-            <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>Ingredients</h1>
+            <h1 className=' font-LosefinSans text-lg border-b-2 mb-1 border-slate-700'>By Ingredients:</h1>
         <ul className="ingredients filter-by flex overflow-y-scroll gap-2 h-60">
             {
                ingredients &&  ingredients.length > 0 ? (
