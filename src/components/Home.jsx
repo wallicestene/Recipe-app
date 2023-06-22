@@ -258,7 +258,7 @@ const Home = () => {
               }
           </div>
            
-            <div className='popular bg-gray-50 h-full overflow-y-scroll lg:p-5'>
+            <div className='popular bg-gradient-to-b from-gray-300 to-slate-400  h-full overflow-y-scroll lg:p-5 rounded-xl'>
             {
                 popular.length > 0 ?
                 (

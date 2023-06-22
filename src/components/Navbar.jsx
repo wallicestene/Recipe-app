@@ -59,7 +59,7 @@ const Navbar = () => {
            {!user?.photoURL ? (<div  className=' w-full h-full flex items-center justify-center font-poppins text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div>) : isURL(user?.photoURL) ? (<img src={user?.photoURL} alt="" className='w-full h-full object-cover'/>): (<div className=' w-full h-full flex items-center justify-center font-poppins font-bold text-3xl p-1 '>{user?.displayName ? user.displayName[0].toUpperCase() : ''}</div> )}
           </div>
         </div>
-      <div className={` ${!showLogOut ? " hidden" : ""} absolute z-50 top-11 bg-gradient-to-r from-gray-700 to-slate-500 rounded-md  -left-20 lg:-left-24 border-2 text-white p-1 shadow-xl`} >
+      <div className={` ${!showLogOut ? " hidden" : ""} absolute z-50 top-11 bg-gradient-to-r from-gray-700 to-slate-500 rounded-md  -left-20 lg:-left-24  text-white p-1 shadow-xl`} >
         <div>
      <div className=' w-fit flex gap-2 p-1 border-b-2'>
       <div className=' w-14 h-14 rounded-full overflow-hidden bg-gradient-to-r from-gray-300 to-slate-900 '>
