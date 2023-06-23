@@ -111,6 +111,18 @@ const signIn = (e) => {
             padding: "10px"
           },
         });
+        }else if(error.message == "Firebase: Error (auth/invalid-email)."){
+          toast.error("Please enter Email your address",{
+            duration: 3000,
+            position: 'top-center',
+          
+            // Styling
+            style: {
+              background: '#454b4a',
+              color: "white",
+              padding: "10px"
+            },
+          });
         }else{
           toast.error(error.message,{
             duration: 3000,
@@ -139,12 +151,12 @@ const signIn = (e) => {
 
             {
               showSignUp &&
-                <div className=' w-72'>
+                <div className=' w-72 '>
                     <p>First Name</p>
                 <input type="text"
                 placeholder='First Name'
                 required
-                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
+                className=' text-slate-900   w-full  py-2 px-5 outline-none border-none rounded-md '
                  value={name} 
                  onChange={(e) => setName(e.target.value)} />
                 </div>
@@ -152,8 +164,8 @@ const signIn = (e) => {
                 <div className=' w-72'>
                     <p>User's Email</p>
                 <input type="text"
-                placeholder='Email'
-                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
+                placeholder='Email address'
+                className=' text-slate-900   w-full  py-2 px-5 outline-none border-none rounded-md '
                  value={email} 
                  required
                  onChange={(e) => setEmail(e.target.value)} />
@@ -162,8 +174,8 @@ const signIn = (e) => {
                     <p>Password</p>
                 <input 
                 type="password"  
-                className='w-full   py-2 px-5 outline-none border-none rounded-md'
-                placeholder='password'
+                className=' text-slate-900  w-full   py-2 px-5 outline-none border-none rounded-md'
+                placeholder='Enter password'
                 value={password} 
                 required
                 onChange={(e) => setPassword(e.target.value)}/>
@@ -175,7 +187,7 @@ const signIn = (e) => {
                 <input type="text"
                 placeholder=' Profile Photo URL (Optional)'
                 required
-                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
+                className=' text-slate-900   w-full  py-2 px-5 outline-none border-none rounded-md '
                  value={image} 
                  onChange={(e) => setImage(e.target.value)} />
                 </div>
