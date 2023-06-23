@@ -184,12 +184,12 @@ const signIn = (e) => {
                 <div className=' grid place-items-center'>
                 {
                   !showSignUp ? (
-                    <div className='my-2'>
-                    <button onClick={Login} className=' h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Log In</button>
+                    <div className='my-2 h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500  rounded-full text-white overflow-hidden'>
+                    <button onClick={Login} className=' h-full w-full  '>Log In</button>
                 </div>
                   ) : (
-                    <div className='my-2'>
-                      <button onClick={signIn} className='  h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Sign Up</button>
+                    <div className='my-2 h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500  rounded-full text-white overflow-hidden'>
+                      <button onClick={signIn} className='  h-full w-full  '>Sign Up</button>
                     </div>
                     
                   )
