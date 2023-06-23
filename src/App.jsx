@@ -41,19 +41,19 @@ const App = () => {
     return unsubscribe
   }, [dispatch])
 
-  useEffect(() => {
-    if (showToast &&user?.displayName) {
-      toast.custom(
-        <div className='lg:p-5 p-3 shadow-lg border-b bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500  rounded-xl'>
-         <h1 className=' font-Shadows text-lg font-semibold tracking-wide'>Welcome back, <strong className='uppercase font-poppins'>{user.displayName}!</strong></h1>
-        <p className='text-base lg:text-lg font-LosefinSans  text-white'>Get ready to explore delicious recipes and discover new favorites.</p>
-        </div>
-      ,{
-        duration: 3500
-      })
-      setShowToast(false)
-    }
-  }, [showToast, user])
+  // useEffect(() => {
+  //   if (showToast &&user?.displayName) {
+  //     toast.custom(
+  //       <div className='lg:p-5 p-3 shadow-lg border-b bg-gradient-to-r from-gray-400 via-slate-400 to-slate-500  rounded-xl'>
+  //        <h1 className=' font-Shadows text-lg font-semibold tracking-wide'>Welcome back, <strong className='uppercase font-poppins'>{user.displayName}!</strong></h1>
+  //       <p className='text-base lg:text-lg font-LosefinSans  text-white'>Get ready to explore delicious recipes and discover new favorites.</p>
+  //       </div>
+  //     ,{
+  //       duration: 3500
+  //     })
+  //     setShowToast(false)
+  //   }
+  // }, [showToast, user])
 
   if (loading) {
     return <div className='grid place-items-center h-screen'><CircularProgress /></div>
@@ -67,7 +67,7 @@ const App = () => {
         </div>
       ) : (
         <Router>
-          <div className=' sticky top-0 z-50 bg-white'>
+          <div className='rounded text-black sticky top-0 z-50 bg-gradient-to-l from-gray-800 via-gray-500 to-slate-400'>
             <Navbar />
           </div>
           
