@@ -112,7 +112,7 @@ const signIn = (e) => {
           },
         });
         }else if(error.message == "Firebase: Error (auth/invalid-email)."){
-          toast.error("Please enter Email your address",{
+          toast.error("Please enter your Email address",{
             duration: 3000,
             position: 'top-center',
           
