@@ -9,6 +9,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState("")
     const [image, setImage] = useState("")
     const [name, setName] = useState("")
+    const [showSignUp, setShowSignUp] = useState(false)
 
     const [{user}, dispatch] = useFavourite()
 
@@ -131,54 +132,76 @@ const signIn = (e) => {
             <h1 className=' lg:text-3xl text-2xl font-LosefinSans font-bold'>Recipe Realm</h1>
         </div>
         <div className=' flex flex-col gap-20 w-full'>
-            <div className='text-center flex flex-col items-center gap-5 p-2 bg-black bg-opacity-60 rounded-md'>
+            <div className='text-center flex flex-col items-center gap-5 p-2 bg-slate-900 bg-opacity-90 rounded-xl'>
                 <h2>Welcome to Recipe Realm</h2>
             </div>
-            <form className='w-full flex flex-col items-center gap-5 bg-white py-2 rounded-md shadow-xl text-black bg-opacity-50 '>
+            <form className='w-full flex flex-col items-center gap-5 bg-slate-900 text-white py-2 rounded-xl shadow-md bg-opacity-80 '>
 
-            <div className=' w-72 border-b-2 border-gray-400'>
-                    <p>User's Profile</p>
-                <input type="text"
-                placeholder=' Profile Photo URL (Optional)'
-                required
-                className=' w-full  py-2 px-5 outline-none border-none rounded-sm '
-                 value={image} 
-                 onChange={(e) => setImage(e.target.value)} />
-                </div>
-
-                <div className=' w-72 border-b-2 border-gray-400'>
+            {
+              showSignUp &&
+                <div className=' w-72'>
                     <p>First Name</p>
                 <input type="text"
-                placeholder='First Name (Required if registering)'
+                placeholder='First Name'
                 required
-                className=' w-full  py-2 px-5 outline-none border-none rounded-sm '
+                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
                  value={name} 
                  onChange={(e) => setName(e.target.value)} />
                 </div>
-                <div className=' w-72 border-b-2 border-gray-400'>
+            }
+                <div className=' w-72'>
                     <p>User's Email</p>
                 <input type="text"
                 placeholder='Email'
-                className=' w-full  py-2 px-5 outline-none border-none rounded-sm '
+                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
                  value={email} 
                  required
                  onChange={(e) => setEmail(e.target.value)} />
                 </div>
-                <div className=' w-72 border-b-2 border-gray-400'>
+                <div className=' w-72 '>
                     <p>Password</p>
                 <input 
                 type="password"  
-                className='w-full   py-2 px-5 outline-none border-none rounded-sm'
+                className='w-full   py-2 px-5 outline-none border-none rounded-md'
                 placeholder='password'
                 value={password} 
                 required
                 onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div className='flex items-center gap-10 mt-10'>
-                    <button onClick={Login} className=' h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Log In</button>
-                {/* <p className=''> register</p> */}
-                <button onClick={signIn} className='  h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Sign Up</button>
+                {
+                  showSignUp && 
+                <div className=' w-72'>
+                <p>User's Profile</p>
+                <input type="text"
+                placeholder=' Profile Photo URL (Optional)'
+                required
+                className=' w-full  py-2 px-5 outline-none border-none rounded-md '
+                 value={image} 
+                 onChange={(e) => setImage(e.target.value)} />
                 </div>
+
+                }
+                <div className=' grid place-items-center'>
+                {
+                  !showSignUp ? (
+                    <div className='my-2'>
+                    <button onClick={Login} className=' h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Log In</button>
+                </div>
+                  ) : (
+                    <div className='my-2'>
+                      <button onClick={signIn} className='  h-10 w-32 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 px-5 rounded-full text-white'>Sign Up</button>
+                    </div>
+                    
+                  )
+                }
+                </div>
+                {
+                  !showSignUp ? ( <p>Not Registered? <span onClick={() => setShowSignUp(true)} className=' underline cursor-pointer'>Sign Up</span></p>
+                  ) : (
+                    <p className=' '>Already Registered? <span onClick={() => setShowSignUp(false)} className=' underline cursor-pointer'>Log In</span></p>
+                  )
+                }
+                
             </form>
         </div>
     </div>
