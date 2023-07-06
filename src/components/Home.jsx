@@ -244,7 +244,7 @@ const Home = () => {
             <h1 className="text-3xl font-Lora font-bold mb-5">Not Found</h1>
           )}
           {discover ? (
-            <div className="h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
+            <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
               {discover.map((item, index) => (
                 <div
                   key={index}
@@ -258,12 +258,12 @@ const Home = () => {
                       className="h-full w-full opacity-50"
                     />
                     <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
-                      <h1 className=" font-bold  text-white text-lg">
+                      <h1 className=" font-bold  text-white text-xl tracking-wide">
                         {item.strMeal}
                       </h1>
-                      <p className=" text-xl font-bold text-white p-2">
-                        {/* {item.strCategory} */}
-                      </p>
+                      {/* <p className=" text-xl font-bold text-white p-2">
+                        {item.strCategory}
+                      </p> */}
                     </div>
                   </Link>
                   <div

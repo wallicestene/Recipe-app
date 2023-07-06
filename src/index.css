@@ -10,6 +10,9 @@
 body::-webkit-scrollbar{
   display: none;
 }
+.discover::-webkit-scrollbar{
+  display: none;
+}
 .skeleton::-webkit-scrollbar{
   display: none;
 }
