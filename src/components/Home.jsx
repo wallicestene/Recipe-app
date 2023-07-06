@@ -148,7 +148,7 @@ const Home = () => {
       fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
         .then((res) => res.json())
         .then((data) => {
-          setDiscover(data.meals[0]);
+          setDiscover(data.meals);
           setSearched(true);
           setFound(true);
         })
@@ -157,11 +157,11 @@ const Home = () => {
           setFound(false);
         });
     } else {
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+      fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=American")
         .then((res) => res.json())
         .then((data) => {
           if (data.meals && data.meals.length > 0) {
-            setDiscover(data.meals[0]);
+            setDiscover(data.meals);
             setFound(true);
           } else {
             console.log("No meals found");
@@ -244,7 +244,7 @@ const Home = () => {
             <h1 className="text-3xl font-Lora font-bold mb-5">Not Found</h1>
           )}
           {discover ? (
-            <div className="h-72 font-LosefinSans lg:w-full bg-black rounded-xl shadow-xl overflow-x-scroll flex gap-4 ">
+            <div className="h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
               {discover.map((item, index) => (
                 <div
                   key={index}
@@ -262,7 +262,7 @@ const Home = () => {
                         {item.strMeal}
                       </h1>
                       <p className=" text-xl font-bold text-white p-2">
-                        {item.strCategory}
+                        {/* {item.strCategory} */}
                       </p>
                     </div>
                   </Link>
