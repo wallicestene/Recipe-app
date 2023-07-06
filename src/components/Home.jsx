@@ -257,8 +257,8 @@ const Home = () => {
                       alt=""
                       className="h-full w-full opacity-50"
                     />
-                    <div className=" absolute top-16 w-80 h-64 flex flex-col left-4 z-40">
-                      <h1 className=" text-2xl font-bold  text-white">
+                    <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
+                      <h1 className=" font-bold  text-white text-lg">
                         {item.strMeal}
                       </h1>
                       <p className=" text-xl font-bold text-white p-2">
@@ -267,15 +267,15 @@ const Home = () => {
                     </div>
                   </Link>
                   <div
-                    className="absolute z-40 top-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer"
+                    className="absolute z-40 bottom-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer"
                     onClick={() => handleClick(item)}
                   >
                     {favourite.find(
                       (favItem) => favItem.strMeal === item.strMeal
                     ) ? (
-                      <Favorite fontSize="large" />
+                      <Favorite  />
                     ) : (
-                      <FavoriteBorderOutlined fontSize="large" />
+                      <FavoriteBorderOutlined />
                     )}
                   </div>
                 </div>
