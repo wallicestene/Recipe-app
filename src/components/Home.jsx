@@ -187,10 +187,10 @@ const randomArea = Math.floor(Math.random() * areas.length)
           setFound(false);
         });
     } else {
-      fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=American")
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data.meals && data.meals.length > 0) {
+          if (data.meals) {
             setDiscover(data.meals);
             setFound(true);
           } else {
@@ -273,7 +273,7 @@ const randomArea = Math.floor(Math.random() * areas.length)
           {!found && (
             <h1 className="text-3xl font-Lora font-bold mb-5">Not Found</h1>
           )}
-          {discover ? (
+          {discover.length ? (
             <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
               {discover.map((item, index) => (
                 <div
@@ -312,7 +312,18 @@ const randomArea = Math.floor(Math.random() * areas.length)
               ))}
             </div>
           ) : (
-            <p>Loading...</p>
+            <div className="skeleton flex gap-5 overflow-x-auto">
+                {skeleton.map((item, index) => (
+                  <div key={index} className="shadow-md">
+                    <Skeleton
+                       sx={{ bgcolor: "grey.900" }}
+                       variant="rounded"
+                       width={265}
+                       height={280}
+                    />
+                  </div>
+                ))}
+              </div>
           )}
         </div>
         <div className="categories mt-5 mb-5">
@@ -346,7 +357,7 @@ const randomArea = Math.floor(Math.random() * areas.length)
                 {skeleton.map((item, index) => (
                   <div key={index} className="shadow-md">
                     <Skeleton
-                      sx={{ bgcolor: "grey.400" }}
+                      sx={{ bgcolor: "grey.900" }}
                       variant="rounded"
                       width={120}
                       height={80}
@@ -425,7 +436,7 @@ const randomArea = Math.floor(Math.random() * areas.length)
                   {skeleton.map((item, index) => (
                     <div key={index} className="shadow-md w-fit">
                       <Skeleton
-                        sx={{ bgcolor: "grey.400" }}
+                        sx={{ bgcolor: "grey.900" }}
                         variant="rounded"
                         width={265}
                         height={280}

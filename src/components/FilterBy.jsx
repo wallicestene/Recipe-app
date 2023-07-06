@@ -46,7 +46,7 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
                         {
                             skeleton.map((item, index) => (
                                <div key={index} className='shadow-md'>
-                                 <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={50} height={30} />
+                                 <Skeleton sx={{ bgcolor: "grey.900" }}  variant="rounded" width={50} height={30} />
                                </div>
                             ))
                         }
@@ -75,7 +75,7 @@ const FilterBy = ({filterByArea, filterByIngredient, setShowFilterBy, showFilter
                         {
                             skeleton.map((item, index) => (
                                <div key={index} className=' shadow-md'>
-                                 <Skeleton sx={{ bgcolor: 'grey.400' }}  variant="rounded" width={140} height={35} />
+                                 <Skeleton sx={{ bgcolor: "grey.900" }}  variant="rounded" width={140} height={35} />
                                </div>
                             ))
                         }
