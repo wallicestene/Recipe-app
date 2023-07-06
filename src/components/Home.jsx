@@ -138,7 +138,7 @@ const Home = () => {
         .catch(err => console.log(err.message))
 
     // Popular
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${mealsLetter[value]}`)
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=American`)
         .then(res => res.json())
         .then(data =>{
             setPopular(data.meals)
