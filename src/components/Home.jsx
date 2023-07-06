@@ -45,7 +45,38 @@ const Home = () => {
 
   const [{ user }, dispatch] = useFavourite();
 
-  const mealsLetter = ["a", "b", "c", "d", "e"];
+  let areas = [
+    "British",
+    "Canadian",
+   " Chinese",
+    "Croatian",
+   "Dutch",
+  "Egyptian",
+  "Filipino",
+ "French",
+"Greek",
+ "Indian",
+   "Irish",
+   "Italian",
+   "Jamaican",
+   "Japanese",
+"Kenyan",
+    "Malaysian",
+  "Mexican",
+   " Moroccan",
+  "Polish",
+   "Portuguese",
+  "Russian",
+   "Spanish",
+       "Thai",
+  "Tunisian",
+   "Turkish",
+  "Unknown",
+    "Vietnamese"];
+// getting a random area
+
+const randomArea = Math.floor(Math.random() * areas.length)
+
 
   const skeleton = [
     1,
@@ -65,7 +96,6 @@ const Home = () => {
     15,
     16,
     17,
-    ,
     18,
     19,
     20,
@@ -173,7 +203,7 @@ const Home = () => {
 
   useEffect(() => {
     // Discover
-    fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=American")
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.meals && data.meals.length > 0) {
