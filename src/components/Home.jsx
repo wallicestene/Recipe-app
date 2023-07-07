@@ -357,8 +357,8 @@ const Home = () => {
             {categories.length > 0 ? (
               <ul className="category flex h-28 p-1  gap-3 w-full overflow-x-scroll items-center rounded-lg">
                 {categories.map((category, index) => (
-                  <li className=" h-full rounded-lg flex-shrink-0 overflow-hidden relative bg-slate-900">
-                    <Link key={index} to={`/category/${category.strCategory}`}>
+                  <li key={index} className=" h-full rounded-lg flex-shrink-0 overflow-hidden relative bg-slate-900">
+                    <Link  to={`/category/${category.strCategory}`}>
                       <img
                         src={category.strCategoryThumb}
                         alt=""

@@ -74,7 +74,6 @@ const handleClick = (item) => {
         .then(res => res.json())
         .then(data => {
             setRecipe(data.meals)
-            console.log(data.meals)
         })
         .catch(err => console.log(err.message))
     }, [])

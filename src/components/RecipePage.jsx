@@ -1,4 +1,5 @@
 import {KeyboardBackspace, PlayArrow, PlayArrowOutlined } from '@mui/icons-material';
+import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom/cjs/react-router-dom';
@@ -47,7 +48,15 @@ const RecipePage = () => {
       };
 
       if (loading) {
-        return <h1>Loading...</h1>;
+        return (
+          <div className=' grid place-items-center h-screen'>
+            <div className='grid place-items-center font-poppins'>
+              <CircularProgress/>
+            <p>Fetching Recipe...</p>
+            </div>
+            
+          </div>
+        );
       }
   return (
     <div className='recipe-page relative my-5 text-slate-800'>

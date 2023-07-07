@@ -56,7 +56,12 @@ const App = () => {
   }, [showToast, user])
 
   if (loading) {
-    return <div className='grid place-items-center h-screen'><CircularProgress /></div>
+    return <div className='grid place-items-center h-screen'>
+      <div className='grid place-items-center font-poppins'>
+      <CircularProgress/>
+      <p>Opening App...</p>
+      </div>
+    </div>
   }
 
   return (
