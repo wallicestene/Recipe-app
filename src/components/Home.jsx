@@ -355,26 +355,23 @@ const Home = () => {
           <h1 className="text-3xl font-Lora font-bold mb-5">Categories</h1>
           <div className="">
             {categories.length > 0 ? (
-              <ul className="category flex h-40  gap-3 w-fill overflow-x-scroll items-center bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg">
+              <ul className="category flex h-28 p-1  gap-3 w-full overflow-x-scroll items-center rounded-lg">
                 {categories.map((category, index) => (
-                  <Link key={index} to={`/category/${category.strCategory}`}>
-                    <li
-                      className=" w-full lg:px-10 md:px-7 px-6 h-24 border rounded-lg opacity-90 flex flex-col items-end justify-end shadow-2xl transition ease-in-out delay-75  hover:-translate-x-1 hover:scale-110 duration-200"
-                      style={{
-                        backgroundImage: `url(${category.strCategoryThumb})`,
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                    >
-                      {/* <img src={category.strCategoryThumb} alt="" key={index}  className=' h-full w-24 object-center object-cover'/> */}
-                      <div className="mb-2 bg-slate-800 lg:p-2 p-1 rounded-sm shadow-md bg-opacity-70">
-                        <p className=" lg:text-xl text-base md:text-base font-LosefinSans text-white ">
-                          {category.strCategory}
-                        </p>
-                      </div>
-                    </li>
-                  </Link>
+                  <li className=" h-full rounded-lg flex-shrink-0 overflow-hidden relative bg-slate-900">
+                    <Link key={index} to={`/category/${category.strCategory}`}>
+                      <img
+                        src={category.strCategoryThumb}
+                        alt=""
+                        loading="lazy"
+                        className=" h-full object-contain opacity-50"
+                      />
+                    </Link>
+                    <div className=" absolute top-1/2 bottom-1/2  h-64 flex flex-col left-4 z-40">
+                          <h1 className=" font-bold  text-white tracking-wide">
+                            {category.strCategory}
+                          </h1>
+                        </div>
+                  </li>
                 ))}
               </ul>
             ) : (
