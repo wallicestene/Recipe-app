@@ -34,11 +34,11 @@ const RecipePage = () => {
           const ingredientImageSrc = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
           if (ingredient && measure) {
             ingredients.push(
-              <li key={i} className=' w-32 h-full border rounded-2xl  shadow-2xl font-LosefinSans '>
-                <div className='h-10 w-20 relative top-0'>
-                     <p className='text-xs text-white p-2 inline-block'>{measure} {ingredient}</p>
+              <li key={i} className=' lg:w-32 md:w-32 w-30 h-full border rounded-lg overflow-hidden  shadow-2xl font-LosefinSans relative flex-shrink-0 bg-slate-900'>
+                <div className='absolute top-2 right-1 left-1 border rounded border-gray-600 bg-slate-900 z-40 p-1 bg-opacity-50'>
+                     <p className='lg:text-sm md:text-sm text-xs text-white'>{measure} {ingredient}</p>
                 </div>
-                <img src={ingredientImageSrc} alt="" className='h-24 w-full object-contain'/>
+                <img src={ingredientImageSrc} alt="" className='h-full w-full object-contain opacity-90'/>
               </li>
             );
           }
@@ -83,10 +83,10 @@ const RecipePage = () => {
             
             <div className='shadow-2xl'>
             <h2 className='text-3xl font-Lora font-bold mb-5 p-3'>Ingredients</h2>
-            <ul className='ing flex overflow-x-scroll gap-5 p-5 scroll-smooth bg-gradient-to-b from-gray-500 from-10% to-100% via-slate-400 rounded-lg'>{renderIngredients()}</ul>
+            <ul className='ing h-30 lg:h-28 flex overflow-x-scroll gap-5 p-1 scroll-smooth rounded-lg'>{renderIngredients()}</ul>
            </div>
         </div>
-        <div className='rounded-lg border p-2 shadow-inner'>
+        <div className='rounded-lg border p-2 shadow'>
             <h1 className='text-3xl font-Lora font-bold mb-5'>Instructions</h1>
            <p className=' font-LosefinSans lg:text-lg'>
             {recipe.strInstructions}

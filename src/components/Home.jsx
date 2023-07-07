@@ -366,7 +366,7 @@ const Home = () => {
                         className=" h-full object-contain opacity-60"
                       />
                     
-                    <div className=" absolute top-1/2 bottom-1/2 items-center left-4 z-40 bg-slate-900 h-fit p-1 bg-opacity-50">
+                    <div className=" absolute top-1/2 bottom-1/2 items-center left-4 z-40 bg-slate-900 h-fit p-1 bg-opacity-50 border border-gray-600 rounded">
                           <h1 className=" font-bold  text-white tracking-wide">
                             {category.strCategory}
                           </h1>
