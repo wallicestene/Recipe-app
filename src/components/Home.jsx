@@ -365,12 +365,13 @@ const Home = () => {
                         loading="lazy"
                         className=" h-full object-contain opacity-60"
                       />
-                    </Link>
+                    
                     <div className=" absolute top-1/2 bottom-1/2 items-center left-4 z-40 bg-slate-900 h-fit p-1 bg-opacity-50">
                           <h1 className=" font-bold  text-white tracking-wide">
                             {category.strCategory}
                           </h1>
                         </div>
+                        </Link>
                   </li>
                 ))}
               </ul>
