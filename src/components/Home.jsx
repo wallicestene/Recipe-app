@@ -33,11 +33,15 @@ const Home = () => {
 
   const [favourite, setFavourite] = useState([]);
 
+  const [searchResult, setSearchResult] = useState([]);
+
   const [value, setValue] = useState(2);
 
   const [searched, setSearched] = useState(false);
 
   const [found, setFound] = useState(true);
+
+  const [showResult, setShowResult] = useState(false);
 
   const [showFavourites, setShowFavourites] = useState(false);
 
@@ -48,57 +52,38 @@ const Home = () => {
   let areas = [
     "British",
     "Canadian",
-   " Chinese",
+    " Chinese",
     "Croatian",
-   "Dutch",
-  "Egyptian",
-  "Filipino",
- "French",
-"Greek",
- "Indian",
-   "Irish",
-   "Italian",
-   "Jamaican",
-   "Japanese",
-"Kenyan",
+    "Dutch",
+    "Egyptian",
+    "Filipino",
+    "French",
+    "Greek",
+    "Indian",
+    "Irish",
+    "Italian",
+    "Jamaican",
+    "Japanese",
+    "Kenyan",
     "Malaysian",
-  "Mexican",
-   " Moroccan",
-  "Polish",
-   "Portuguese",
-  "Russian",
-   "Spanish",
-       "Thai",
-  "Tunisian",
-   "Turkish",
-  "Unknown",
-    "Vietnamese"];
-// getting a random area
+    "Mexican",
+    " Moroccan",
+    "Polish",
+    "Portuguese",
+    "Russian",
+    "Spanish",
+    "Thai",
+    "Tunisian",
+    "Turkish",
+    "Unknown",
+    "Vietnamese",
+  ];
+  // getting a random area
 
-const randomArea = Math.floor(Math.random() * areas.length)
-
+  const randomArea = Math.floor(Math.random() * areas.length);
 
   const skeleton = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
 
   const favouritesCollection = collection(db, "favourites");
@@ -178,21 +163,27 @@ const randomArea = Math.floor(Math.random() * areas.length)
       fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
         .then((res) => res.json())
         .then((data) => {
-          setDiscover(data.meals);
+          setSearchResult(data.meals[0]);
           setSearched(true);
           setFound(true);
+          setShowResult(true)
+          console.log(data.meals[0]);
         })
         .catch((err) => {
           console.log(err.message);
           setFound(false);
+          setShowResult(false)
         });
     } else {
-      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`)
+      fetch(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.meals) {
             setDiscover(data.meals);
             setFound(true);
+            setShowResult(false)
           } else {
             console.log("No meals found");
           }
@@ -203,7 +194,9 @@ const randomArea = Math.floor(Math.random() * areas.length)
 
   useEffect(() => {
     // Discover
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`)
+    fetch(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?a=${areas[randomArea]}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.meals && data.meals.length > 0) {
@@ -273,8 +266,27 @@ const randomArea = Math.floor(Math.random() * areas.length)
           {!found && (
             <h1 className="text-3xl font-Lora font-bold mb-5">Not Found</h1>
           )}
+          {found && showResult && (
+            <div className="h-72 w-fit rounded-lg overflow-hidden relative">
+              <img
+                src={searchResult.strMealThumb}
+                alt=""
+                className=" h-full w-full object-contain"
+              />
+              <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
+                      <h1 className=" font-bold  text-white text-xl tracking-wide">
+                        {searchResult.strMeal}
+                      </h1>
+                      <p className=" text-xl font-bold text-white p-2">
+                        {searchResult.strCategory}
+                      </p>
+                    </div>
+            </div>
+          )}
           {discover.length ? (
-            <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
+            <>
+            {
+              !showResult && <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
               {discover.map((item, index) => (
                 <div
                   key={index}
@@ -303,7 +315,7 @@ const randomArea = Math.floor(Math.random() * areas.length)
                     {favourite.find(
                       (favItem) => favItem.strMeal === item.strMeal
                     ) ? (
-                      <Favorite  />
+                      <Favorite />
                     ) : (
                       <FavoriteBorderOutlined />
                     )}
@@ -311,19 +323,21 @@ const randomArea = Math.floor(Math.random() * areas.length)
                 </div>
               ))}
             </div>
+            }
+            </>
           ) : (
             <div className="skeleton flex gap-5 overflow-x-auto">
-                {skeleton.map((item, index) => (
-                  <div key={index} className="shadow-md">
-                    <Skeleton
-                       sx={{ bgcolor: "grey.900" }}
-                       variant="rounded"
-                       width={265}
-                       height={280}
-                    />
-                  </div>
-                ))}
-              </div>
+              {skeleton.map((item, index) => (
+                <div key={index} className="shadow-md">
+                  <Skeleton
+                    sx={{ bgcolor: "grey.900" }}
+                    variant="rounded"
+                    width={265}
+                    height={280}
+                  />
+                </div>
+              ))}
+            </div>
           )}
         </div>
         <div className="categories mt-5 mb-5">
