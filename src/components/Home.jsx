@@ -166,13 +166,13 @@ const Home = () => {
           setSearchResult(data.meals[0]);
           setSearched(true);
           setFound(true);
-          setShowResult(true)
+          setShowResult(true);
           console.log(data.meals[0]);
         })
         .catch((err) => {
           console.log(err.message);
           setFound(false);
-          setShowResult(false)
+          setShowResult(false);
         });
     } else {
       fetch(
@@ -182,8 +182,8 @@ const Home = () => {
         .then((data) => {
           if (data.meals) {
             setDiscover(data.meals);
-            setFound(true);
-            setShowResult(false)
+            setFound(false);
+            setShowResult(false);
           } else {
             console.log("No meals found");
           }
@@ -260,70 +260,81 @@ const Home = () => {
         <div className="discover mt-5 text-slate-800">
           {found && (
             <h1 className="text-3xl font-Lora font-bold mb-5">
-              {searched ? "Your Search" : "Discover"}
+              {searched && found ? "Your Search" : "Discover"}
             </h1>
           )}
           {!found && (
             <h1 className="text-3xl font-Lora font-bold mb-5">Not Found</h1>
           )}
           {found && showResult && (
-            <div className="h-72 w-fit rounded-lg overflow-hidden relative">
-              <img
-                src={searchResult.strMealThumb}
-                alt=""
-                className=" h-full w-full object-contain"
-              />
-              <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
-                      <h1 className=" font-bold  text-white text-xl tracking-wide">
-                        {searchResult.strMeal}
-                      </h1>
-                      <p className=" text-xl font-bold text-white p-2">
-                        {searchResult.strCategory}
-                      </p>
-                    </div>
+            <div className="h-72 w-fit rounded-xl overflow-hidden relative bg-slate-900">
+              <Link to={`/recipe/${searchResult.strMeal}`}>
+                <img
+                  src={searchResult.strMealThumb}
+                  alt=""
+                  className=" h-full w-full object-contain opacity-50"
+                />
+                <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
+                  <h1 className=" font-bold  text-white text-xl tracking-wide">
+                    {searchResult.strMeal}
+                  </h1>
+                  <p className=" text-xl font-bold text-white p-2">
+                    {searchResult.strCategory}
+                  </p>
+                </div>
+              </Link>
+              <div
+                className="absolute z-40 bottom-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer"
+                onClick={() => handleClick(searchResult)}
+              >
+                {favourite.find(
+                  (item) => item.strMeal === searchResult.strMeal
+                ) ? (
+                  <Favorite />
+                ) : (
+                  <FavoriteBorderOutlined />
+                )}
+              </div>
             </div>
           )}
           {discover.length ? (
             <>
-            {
-              !showResult && <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
-              {discover.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 rounded-xl overflow-hidden bg-slate-900 relative"
-                >
-                  <Link to={`/recipe/${item.strMeal}`}>
-                    <img
-                      src={item.strMealThumb}
+              {!showResult && (
+                <div className="discover h-72 font-LosefinSans lg:w-full rounded-xl shadow-xl overflow-x-scroll flex gap-5 ">
+                  {discover.map((item, index) => (
+                    <div
                       key={index}
-                      alt=""
-                      className="h-full w-full opacity-50"
-                    />
-                    <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
-                      <h1 className=" font-bold  text-white text-xl tracking-wide">
-                        {item.strMeal}
-                      </h1>
-                      {/* <p className=" text-xl font-bold text-white p-2">
-                        {item.strCategory}
-                      </p> */}
+                      className="flex-shrink-0 rounded-xl overflow-hidden bg-slate-900 relative"
+                    >
+                      <Link to={`/recipe/${item.strMeal}`}>
+                        <img
+                          src={item.strMealThumb}
+                          key={index}
+                          alt=""
+                          className="h-full w-full opacity-50"
+                        />
+                        <div className=" absolute top-16 h-64 flex flex-col left-4 z-40">
+                          <h1 className=" font-bold  text-white text-xl tracking-wide">
+                            {item.strMeal}
+                          </h1>
+                        </div>
+                      </Link>
+                      <div
+                        className="absolute z-40 bottom-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer"
+                        onClick={() => handleClick(item)}
+                      >
+                        {favourite.find(
+                          (favItem) => favItem.strMeal === item.strMeal
+                        ) ? (
+                          <Favorite />
+                        ) : (
+                          <FavoriteBorderOutlined />
+                        )}
+                      </div>
                     </div>
-                  </Link>
-                  <div
-                    className="absolute z-40 bottom-10 right-5 text-white h-10 w-10 grid place-items-center hover:cursor-pointer"
-                    onClick={() => handleClick(item)}
-                  >
-                    {favourite.find(
-                      (favItem) => favItem.strMeal === item.strMeal
-                    ) ? (
-                      <Favorite />
-                    ) : (
-                      <FavoriteBorderOutlined />
-                    )}
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            }
+              )}
             </>
           ) : (
             <div className="skeleton flex gap-5 overflow-x-auto">
