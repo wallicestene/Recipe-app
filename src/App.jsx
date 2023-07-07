@@ -67,7 +67,7 @@ const App = () => {
         </div>
       ) : (
         <Router>
-          <div className='rounded text-black sticky top-0 z-50 bg-white'>
+          <div className='text-black sticky top-0 z-50 bg-white'>
             <Navbar />
           </div>
           
